@@ -1,0 +1,58 @@
+---
+import bootSequence from "../data/boot_sequence.json";
+const sequence = bootSequence;
+console.log(sequence);
+---
+
+<section>
+  <div id="boot-sequence">
+    {
+      sequence.map((line, index) => (
+        <p>{"[" + (line.delay / 1000).toFixed(6) + "]  " + line.text}</p>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  @font-face {
+    font-family: "Hack";
+    src:
+      url("/fonts/hack-regular.woff2?sha=3114f1256") format("woff2"),
+      url("/fonts/hack-regular.woff?sha=3114f1256") format("woff");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Hack";
+    src:
+      url("/fonts/hack-bold.woff2?sha=3114f1256") format("woff2"),
+      url("/fonts/hack-bold.woff?sha=3114f1256") format("woff");
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Hack";
+    src:
+      url("/fonts/hack-italic.woff2?sha=3114f1256") format("woff2"),
+      url("/fonts/hack-italic.woff?sha=3114f1256") format("woff");
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: "Hack";
+    src:
+      url("/fonts/hack-bolditalic.woff2?sha=3114f1256") format("woff2"),
+      url("/fonts/hack-bolditalic.woff?sha=3114f1256") format("woff");
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  #boot-sequence {
+    color: #fafafa;
+    font-family: "Hack";
+  }
+</style>
