@@ -1,0 +1,126 @@
+[
+    {
+        "text": "EldoriaOS version 5.13.7 (build@Eldoracore) (node-20.5.0 (cosmos-4.2.0) Mon Sep 21 12:45:55 PM UTC 2024",
+        "delay": 110
+    },
+    {
+        "text": "Command line: BOOT_HTML=/index.html root=UUID=7d7d7d7d-7d7d-7d7d-7d7d-7d7d7d7d7d7d ro quiet",
+        "delay": 15
+    },
+    {
+        "text": "BIOS Provided physical RAM map:",
+        "delay": 12
+    },
+    {
+        "text": "---- BIOS-e820: 0000000000000000 - 000000000009f000 (usable)",
+        "delay": 12
+    },
+    {
+        "text": "---- BIOS-e820: 000000000009f000 - 00000000000a0000 (reserved)",
+        "delay": 12
+    },
+    {
+        "text": "---- BIOS-e820: 00000000000f0000 - 0000000000100000 (reserved)",
+        "delay": 12
+    },
+    {
+        "text": "---- BIOS-e820: 0000000000100000 - 00000000bff00000 (usable)",
+        "delay": 104
+    },
+    {
+        "text": "efi: EFI v4.2 by Auroracore",
+        "delay": 104
+    },
+    {
+        "text": "secureboot: Secure boot enabled",
+        "delay": 51
+    },
+    {
+        "text": "DMI: Solaris 2.0.0, BIOS X9 07/14/2024",
+        "delay": 13
+    },
+    {
+        "text": "RAMDISK: 0x00000000bff00000 - 0x00000000c0000000",
+        "delay": 20
+    },
+    {
+        "text": "smpboot: Allowing 4 CPUs, 2 hotplug CPUs",
+        "delay": 250
+    },
+    {
+        "text": "Hypervisor detected: JavaScript \\k",
+        "delay": 11
+    },
+    {
+        "text": "clocksource: js: mask: 0xffffffff max_cycles: 0x3b2c1d1d2d, max_idle_ns: 3221183294583 ns",
+        "delay": 14
+    },
+    {
+        "text": "random: falling [into the void] init done",
+        "delay": 500
+    },
+    {
+        "text": "Console: switching to colour frame buffer [infinite_spectrum] 32.9Mx32.9M",
+        "delay": 50
+    },
+    {
+        "text": "usb usb1: New USB device found, idVendor=2wxw, idProduct=0003, bcdDevice= 3.33",
+        "delay": 50
+    },
+    {
+        "text": "usb usb1: Manufacturer: NullDevice",
+        "delay": 10
+    },
+    {
+        "text": "usb usb1: SerialNumber: 0x000000000000000Z",
+        "delay": 10
+    },
+    {
+        "text": "usb usb2: New USB device found, idVendor=2vwv, idProduct=0003, bcdDevice= 3.14",
+        "delay": 50
+    },
+    {
+        "text": "usb usb2: Manufacturer: Obsidian",
+        "delay": 10
+    },
+    {
+        "text": "usb usb2: SerialNumber: 0x000000000000000J",
+        "delay": 10
+    },
+    {
+        "text": "usb usb3: New USB device found, idVendor=pxyz, idProduct=0004, bcdDevice= 4.18",
+        "delay": 50
+    },
+    {
+        "text": "usb usb3: Manufacturer: Ember",
+        "delay": 10
+    },
+    {
+        "text": "usb usb3: SerialNumber: 0x000000000000000K",
+        "delay": 10
+    },
+    {
+        "text": "usb usb4: New USB device found, idVendor=fxkx, idProduct=0004, bcdDevice= 5.22",
+        "delay": 50
+    },
+    {
+        "text": "usb usb4: Manufacturer: Quantum",
+        "delay": 10
+    },
+    {
+        "text": "usb usb4: SerialNumber: 0x000000000000000L",
+        "delay": 250
+    },
+    {
+        "text": "init[1]: Detected architecture arm64",
+        "delay": 10
+    },
+    {
+        "text": "init[1]: Hostname is set to \"3Ph1x777\"",
+        "delay": 10
+    },
+    {
+        "text": "init[1]: Launching terminal...",
+        "delay": 750
+    }
+]
