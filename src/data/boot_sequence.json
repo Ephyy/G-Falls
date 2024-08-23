@@ -1,6 +1,6 @@
 [
     {
-        "text": "EldoriaOS version 5.13.7 (build@Eldoracore) (node-20.5.0 (cosmos-4.2.0) Mon Sep 21 12:45:55 PM UTC 2024",
+        "text": "GravityOS version 5.13.7 (build@Eldoracore) (node-20.5.0 (cosmos-4.2.0) Mon Sep 21 12:45:55 PM UTC 2024",
         "delay": 110
     },
     {
@@ -28,7 +28,7 @@
         "delay": 104
     },
     {
-        "text": "efi: EFI v4.2 by Auroracore",
+        "text": "efi: EFI v3.14 by Pi",
         "delay": 104
     },
     {
@@ -64,7 +64,7 @@
         "delay": 50
     },
     {
-        "text": "usb usb1: New USB device found, idVendor=2wxw, idProduct=0003, bcdDevice= 3.33",
+        "text": "usb usb1: New USB device found, idVendor=1uwu, idProduct=0003, bcdDevice= 3.33",
         "delay": 50
     },
     {
@@ -76,7 +76,7 @@
         "delay": 10
     },
     {
-        "text": "usb usb2: New USB device found, idVendor=2vwv, idProduct=0003, bcdDevice= 3.14",
+        "text": "usb usb2: New USB device found, idVendor=1owo, idProduct=0003, bcdDevice= 3.14",
         "delay": 50
     },
     {
@@ -88,7 +88,7 @@
         "delay": 10
     },
     {
-        "text": "usb usb3: New USB device found, idVendor=pxyz, idProduct=0004, bcdDevice= 4.18",
+        "text": "usb usb3: New USB device found, idVendor=kiwi, idProduct=0004, bcdDevice= 4.18",
         "delay": 50
     },
     {
@@ -100,7 +100,7 @@
         "delay": 10
     },
     {
-        "text": "usb usb4: New USB device found, idVendor=fxkx, idProduct=0004, bcdDevice= 5.22",
+        "text": "usb usb4: New USB device found, idVendor=kuwu, idProduct=0004, bcdDevice= 5.22",
         "delay": 50
     },
     {
