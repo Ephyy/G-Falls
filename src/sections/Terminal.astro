@@ -1,9 +1,52 @@
 ---
-import CommandLine from "../components/CommandLine.astro";
+import CommandLineText from "../components/CommandLineText.astro";
 ---
 
 <section>
   <div id="terminal">
-    <CommandLine />
+    <CommandLineText />
+    <p>### Ingrese el codigo secreto ###</p>
+    <div class="flex">
+      <div>
+        <span class="text-green-500">v@localhost</span><span>:</span><span
+          class="text-fuchsia-600">/root</span
+        >
+        <span>#</span>
+      </div>
+      <div>
+        <input
+          type="text"
+          class="user-input text-zinc-50 bg-transparent ml-4 blinking-cursor"
+        />
+      </div>
+    </div>
   </div>
 </section>
+
+<style>
+  body {
+    color: #fafafa;
+    font-family: Hack;
+  }
+
+  .user-input {
+    min-width: 1ch;
+    border: none;
+    outline: none;
+    background-color: transparent;
+  }
+
+  .blinking-cursor::after {
+    content: "|";
+    animation: cursor-blink 1s steps(2) infinite;
+  }
+
+  @keyframes cursor-blink {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+</style>
