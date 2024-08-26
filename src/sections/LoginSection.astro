@@ -38,16 +38,31 @@
 
   // Selecciona todos los elementos que tienen la clase 'my-input'
   const inputs = document.querySelectorAll(".editor-field__input");
+  // Función para generar ruido en los inputs
+  const applyNoise = () => {
+    inputs.forEach((input) => {
+      generateNoise(input, "input");
+    });
+  };
 
+  // Función para remover ruido de los inputs
+  const removeNoiseFromInputs = () => {
+    inputs.forEach((input) => {
+      removeNoise(input, "input");
+    });
+  };
+
+  // Ejecuta la función cuando el DOM esté completamente cargado
+  document.addEventListener("DOMContentLoaded", () => {
+    applyNoise();
+  });
+
+  // Ejecuta la función cuando cambia la visibilidad de la ventana
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") {
-      inputs.forEach((input) => {
-        generateNoise(input, "input");
-      });
+      applyNoise();
     } else {
-      inputs.forEach((input) => {
-        removeNoise(input, "input");
-      });
+      removeNoiseFromInputs();
     }
   });
 
