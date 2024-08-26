@@ -65,18 +65,14 @@ function printTerminal() {
 }
 ---
 
-<div class="flex gap-x-14 mt-4 ml-2">
+<div class="flex gap-x-14">
   <div>
-    {
-      draw.map((line, index) => (
-        <p class="text-sky-500 font-semibold ">{line}</p>
-      ))
-    }
+    {draw.map((line, index) => <p class="text-sky-500 ">{line}</p>)}
   </div>
   <div class="flex flex-col pt-12">
     {
       printTerminal().map((line, index) => (
-        <p class="text-sky-500 font-semibold leading-5">{line}</p>
+        <p class="text-sky-500 leading-5">{line}</p>
       ))
     }
   </div>
