@@ -39,22 +39,34 @@
   // Selecciona todos los elementos que tienen la clase 'my-input'
   const inputs = document.querySelectorAll(".editor-field__input");
 
-  // Itera sobre cada uno de los elementos seleccionados
-  inputs.forEach((input) => {
-    // Agrega un listener para el evento 'focus'
-    input.addEventListener("focus", (event) => {
-      console.log("Input focused:", event.target);
-      // Aquí puedes ejecutar cualquier código que desees cuando el input reciba focus
-      generateNoise(event.target, "input");
-    });
-
-    // Agrega un listener para el evento 'blur'
-    input.addEventListener("blur", (event) => {
-      console.log("Input lost focus:", event.target);
-      // Aquí puedes ejecutar cualquier código que desees cuando el input pierda focus
-      removeNoise(event.target, "input");
-    });
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      inputs.forEach((input) => {
+        generateNoise(input, "input");
+      });
+    } else {
+      inputs.forEach((input) => {
+        removeNoise(input, "input");
+      });
+    }
   });
+
+  // // Itera sobre cada uno de los elementos seleccionados
+  // inputs.forEach((input) => {
+  //   // Agrega un listener para el evento 'focus'
+  //   input.addEventListener("focus", (event) => {
+  //     console.log("Input focused:", event.target);
+  //     // Aquí puedes ejecutar cualquier código que desees cuando el input reciba focus
+  //     generateNoise(event.target, "input");
+  //   });
+
+  //   // Agrega un listener para el evento 'blur'
+  //   input.addEventListener("blur", (event) => {
+  //     console.log("Input lost focus:", event.target);
+  //     // Aquí puedes ejecutar cualquier código que desees cuando el input pierda focus
+  //     removeNoise(event.target, "input");
+  //   });
+  // });
 
   const buttons = document.querySelectorAll(".btn");
 
