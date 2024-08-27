@@ -1,41 +1,62 @@
 ---
 import CommandLineText from "../components/CommandLineText.astro";
+import Prompt from "../components/Prompt.astro";
 ---
 
 <section>
   <div id="terminal" class="p-2" onclick="">
     <CommandLineText />
-    <div class="flex mt-2">
-      <div>
-        <span class="text-green-500">v@localhost</span><span>:</span><span
-          class="text-fuchsia-600">/root</span
-        >
-        <span>#</span>
-      </div>
-      <div>
-        <input
-          type="text"
-          id="user-input"
-          class="user-input text-zinc-50 bg-transparent ml-2"
-          spellcheck="false"
-          autocomplete="off"
-        />
-      </div>
-    </div>
+    <Prompt />
   </div>
 </section>
 
 <script>
+  const terminal = document.getElementById("terminal");
+
   document.addEventListener("DOMContentLoaded", (event) => {
     const userInput = document.getElementById("user-input");
-    const terminal = document.getElementById("terminal");
 
     userInput?.focus();
 
     terminal?.addEventListener("click", () => {
       userInput?.focus();
     });
+
+    userInput?.addEventListener("keydown", (event) => {
+      onUserInput(event);
+    });
   });
+
+  // Función para crear un nuevo Prompt
+  const createNewPrompt = () => {
+    const newPrompt = document.createElement("prompt");
+    terminal?.appendChild(newPrompt);
+  };
+
+  const onUserInput = (event: any) => {
+    const shellPrompt = event.target.value; // Valor del input
+
+    switch (event.key) {
+      case "Enter":
+        console.log(event);
+
+        switch (shellPrompt) {
+          case "login.py":
+            window.location.href = "/login";
+            break;
+          case "help":
+            // Mensaje de ayuda cifrado
+            console.log("aGVscCB0aGUgY2FzZSBvZiB0aGUgY29tbWFuZA==");
+            break;
+          case "ls":
+            console.log("login.py");
+            break;
+          default:
+            createNewPrompt();
+            break;
+        }
+    }
+  };
 </script>
 
 <style>
@@ -43,12 +64,5 @@ import CommandLineText from "../components/CommandLineText.astro";
     color: #fafafa;
     font-family: Hack;
     font-weight: 700;
-  }
-
-  .user-input {
-    min-width: 1ch;
-    border: none;
-    outline: none;
-    background-color: transparent;
   }
 </style>
