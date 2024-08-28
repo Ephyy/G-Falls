@@ -1,68 +1,68 @@
 ---
 import CommandLineText from "../components/CommandLineText.astro";
-import Prompt from "../components/Prompt.astro";
+import UserPrompts from "../components/UserPrompts";
 ---
 
 <section>
   <div id="terminal" class="p-2" onclick="">
     <CommandLineText />
-    <Prompt />
+    <UserPrompts />
   </div>
-</section>
 
-<script>
-  const terminal = document.getElementById("terminal");
+  <script>
+    const terminal = document.getElementById("terminal");
 
-  document.addEventListener("DOMContentLoaded", (event) => {
-    const userInput = document.getElementById("user-input");
+    document.addEventListener("DOMContentLoaded", (event) => {
+      const userInput = document.getElementById("user-input");
 
-    userInput?.focus();
-
-    terminal?.addEventListener("click", () => {
       userInput?.focus();
+
+      terminal?.addEventListener("click", () => {
+        userInput?.focus();
+      });
+
+      userInput?.addEventListener("keydown", (event) => {
+        onUserInput(event);
+      });
     });
 
-    userInput?.addEventListener("keydown", (event) => {
-      onUserInput(event);
-    });
-  });
+    // Función para crear un nuevo Prompt
+    const createNewPrompt = () => {
+      const newPrompt = document.createElement("prompt");
+      terminal?.appendChild(newPrompt);
+    };
 
-  // Función para crear un nuevo Prompt
-  const createNewPrompt = () => {
-    const newPrompt = document.createElement("prompt");
-    terminal?.appendChild(newPrompt);
-  };
+    const onUserInput = (event: any) => {
+      const shellPrompt = event.target.value; // Valor del input
 
-  const onUserInput = (event: any) => {
-    const shellPrompt = event.target.value; // Valor del input
+      switch (event.key) {
+        case "Enter":
+          console.log(event);
 
-    switch (event.key) {
-      case "Enter":
-        console.log(event);
+          switch (shellPrompt) {
+            case "login.py":
+              window.location.href = "/login";
+              break;
+            case "help":
+              // Mensaje de ayuda cifrado
+              console.log("aGVscCB0aGUgY2FzZSBvZiB0aGUgY29tbWFuZA==");
+              break;
+            case "ls":
+              console.log("login.py");
+              break;
+            default:
+              createNewPrompt();
+              break;
+          }
+      }
+    };
+  </script>
 
-        switch (shellPrompt) {
-          case "login.py":
-            window.location.href = "/login";
-            break;
-          case "help":
-            // Mensaje de ayuda cifrado
-            console.log("aGVscCB0aGUgY2FzZSBvZiB0aGUgY29tbWFuZA==");
-            break;
-          case "ls":
-            console.log("login.py");
-            break;
-          default:
-            createNewPrompt();
-            break;
-        }
+  <style>
+    body {
+      color: #fafafa;
+      font-family: Hack;
+      font-weight: 700;
     }
-  };
-</script>
-
-<style>
-  body {
-    color: #fafafa;
-    font-family: Hack;
-    font-weight: 700;
-  }
-</style>
+  </style>
+</section>
