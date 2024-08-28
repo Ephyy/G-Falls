@@ -1,0 +1,96 @@
+---
+import "@fontsource/tomorrow";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @font-face {
+    font-family: "Hack";
+    src:
+      url("/fonts/hack-regular.woff2?sha=3114f1256") format("woff2"),
+      url("/fonts/hack-regular.woff?sha=3114f1256") format("woff");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Hack";
+    src:
+      url("/fonts/hack-bold.woff2?sha=3114f1256") format("woff2"),
+      url("/fonts/hack-bold.woff?sha=3114f1256") format("woff");
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Hack";
+    src:
+      url("/fonts/hack-italic.woff2?sha=3114f1256") format("woff2"),
+      url("/fonts/hack-italic.woff?sha=3114f1256") format("woff");
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: "Hack";
+    src:
+      url("/fonts/hack-bolditalic.woff2?sha=3114f1256") format("woff2"),
+      url("/fonts/hack-bolditalic.woff?sha=3114f1256") format("woff");
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  :root {
+    --accent: 136, 58, 234;
+    --accent-light: 224, 204, 250;
+    --accent-dark: 49, 10, 101;
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light)) 30%,
+      white 60%
+    );
+  }
+  html {
+    font-family: system-ui, sans-serif;
+    background: #131313;
+  }
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
+
+  .user-input {
+    min-width: 1ch;
+    border: none;
+    outline: none;
+    background-color: transparent;
+  }
+</style>
