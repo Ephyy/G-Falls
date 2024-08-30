@@ -1,9 +1,29 @@
 
 
 
-export default function Prompt() {
+export default function Prompt( {onEnter} ) {
+
+    const handleKeyDown = (e) => {
+        
+        if (e.key === 'Enter') {
+            const input = e.target.value;
+            switch (input) {
+                case 'login.py':
+                    //Redirect to login page
+                    window.location.href = '/login';
+                    break;
+                case '':
+                    onEnter();
+                    break;
+                default:
+                    console.log('command not found');
+            }
+            // setPrompts([...prompts, <Prompt/>]);
+        }
+    }
+
     return (
-        <div className="flex mt-2">
+        <div className="flex">
             <span className="text-green-500">v@localhost</span>
             <span>:</span>
             <span className="text-fuchsia-600">/root</span>
@@ -13,6 +33,7 @@ export default function Prompt() {
                 type="text"
                 spellCheck="false"
                 autoComplete="off"
+                onKeyDown={handleKeyDown}
             />
         </div>
     );

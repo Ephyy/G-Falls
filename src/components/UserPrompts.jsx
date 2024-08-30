@@ -2,20 +2,18 @@ import Prompt from "./Prompt";
 import React, { useState } from 'react';
 
 function UserPrompts() {
-    const [prompts, setPrompts] = useState([]);
+    const [prompts, setPrompts] = useState([1]);
 
-    const handleKeyDown = (e) => {
     
-        if (e.key === 'Enter') {
-            console.log("enter");
-            
-            // setPrompts([...prompts, <Prompt/>]);
-        }
+    const addPrompt = () => {
+        setPrompts([...prompts, setPrompts.length + 1]);
     }
 
     return (
         <div>
-            <Prompt/>
+            {prompts.map((prompt, index) => (
+                <Prompt onEnter={addPrompt} />
+            ))}
         </div>
     );    
 }
