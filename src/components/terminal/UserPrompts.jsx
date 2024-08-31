@@ -10,7 +10,9 @@ function UserPrompts() {
         
         let msg;
         switch (command) {
-            // TODO: CLEAR COMMAND
+            case 'clear':
+                setPrompts([]);
+                return;
             case 'help':
                 msg = "d206c3eff081652020293d54f41d841d4c05b9f361dfea96e9a5352cbb888a9cb7ae4d88a1ecedcd9090b941c8fdc2982136313417e5efd67e0daedbc1fc2806";
                 break;
