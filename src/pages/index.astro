@@ -1,12 +1,16 @@
 ---
 import TerminalLayout from "../layouts/TerminalLayout.astro";
-import BootSequence from "../sections/BootSequence.astro";
-import Terminal from "../sections/Terminal.astro";
+import BootSequence from "../components/BootSequence.jsx";
 ---
 
 <TerminalLayout title="Welcome to Astro.">
-  <main>
-    <!-- <BootSequence /> -->
-    <Terminal />
-  </main>
+  <BootSequence client:visible />
 </TerminalLayout>
+
+<style>
+  @media (max-width: 768px) {
+    #boot-sequence {
+      font-size: 0.66rem;
+    }
+  }
+</style>

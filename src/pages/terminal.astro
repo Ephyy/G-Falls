@@ -1,0 +1,12 @@
+---
+import CommandLineText from "../components/CommandLineText.astro";
+import UserPrompts from "../components/terminal/UserPrompts";
+import TerminalLayout from "../layouts/TerminalLayout.astro";
+---
+
+<TerminalLayout title="Welcome to Astro.">
+  <div id="terminal" class="p-2 no-wrap" onclick="">
+    <CommandLineText />
+    <UserPrompts client:visible />
+  </div>
+</TerminalLayout>
