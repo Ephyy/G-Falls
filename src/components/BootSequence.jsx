@@ -2,6 +2,7 @@
 
 import { useEffect, useState} from 'react'
 import sequence from '../data/boot_sequence.json'
+import { navigate } from 'astro:transitions/client';
 
 function BootSequence() {
     const [messages, setMessages] = useState([]);
@@ -19,6 +20,10 @@ function BootSequence() {
             // Aumentando el delay para el siguiente mensaje
             delay += message.delay;
         });
+
+        setTimeout(() => {
+            navigate("/terminal")
+        }, delay)
 
     }, []);
 
