@@ -23,7 +23,7 @@ function BootSequence() {
     }, []);
 
     return (
-        <div>
+        <div id='boot-sequence' className='no-wrap'>
             {messages.map((message, index) => (
                 <div key={index}>{message}</div>
             ))}
