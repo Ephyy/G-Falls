@@ -1,14 +1,17 @@
 ---
-if (Astro.request.method === "post") {
+export const prerender = false;
+
+if (Astro.request.method === "POST") {
   try {
     const data = await Astro.request.formData();
+    console.log(data);
   } catch (error) {
     console.error(error);
   }
 }
 ---
 
-<form id="login-form" method="post">
+<form id="login-form" method="POST" enctype="multipart/form-data">
   <div class="container">
     <h1>Login</h1>
     <div class="editor-field editor-field__textbox">
@@ -17,7 +20,7 @@ if (Astro.request.method === "post") {
       </div>
 
       <div class="editor-field__container">
-        <input type="text" class="editor-field__input" />
+        <input type="text" name="name" class="editor-field__input" required />
       </div>
       <span class="editor-field__bottom"></span>
       <div class="editor-field__noise"></div>
@@ -28,13 +31,18 @@ if (Astro.request.method === "post") {
       </div>
 
       <div class="editor-field__container">
-        <input type="password" class="editor-field__input" />
+        <input
+          type="password"
+          name="password"
+          class="editor-field__input"
+          required
+        />
       </div>
       <span class="editor-field__bottom"></span>
       <div class="editor-field__noise"></div>
     </div>
     <div class="btn btn--primary">
-      <div class="btn__container">Login</div>
+      <button class="btn__container" type="submit"> Login </button>
       <div class="btn__bottom"></div>
       <div class="btn__noise"></div>
     </div>
@@ -95,12 +103,10 @@ if (Astro.request.method === "post") {
 
   buttons.forEach((button) => {
     button.addEventListener("mouseover", (event) => {
-      console.log("Button hovered:", event.target);
       generateNoise(event.target, "button");
     });
 
     button.addEventListener("mouseout", (event) => {
-      console.log("Button unhovered:", event.target);
       removeNoise(event.target, "button");
     });
   });
