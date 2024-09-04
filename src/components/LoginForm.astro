@@ -1,17 +1,11 @@
 ---
-export const prerender = false;
+import { actions } from "astro:actions";
 
-if (Astro.request.method === "POST") {
-  try {
-    const data = await Astro.request.formData();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
+const result = Astro.getActionResult(actions.login);
+console.log(result);
 ---
 
-<form id="login-form" method="POST" enctype="multipart/form-data">
+<form id="login-form" method="POST" action={actions.login}>
   <div class="container">
     <h1>Login</h1>
     <div class="editor-field editor-field__textbox">
