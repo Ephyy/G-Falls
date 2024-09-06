@@ -14,7 +14,7 @@ export const server = {
 
             try {
                 const client = await pool.connect();
-                const res = await client.query('SELECT * FROM users WHERE name = $1', [userName]);
+                const res = await client.query('SELECT * FROM users WHERE username = $1', [userName]);
                 client.release();
                 
                 // If the user is found, return the user object
