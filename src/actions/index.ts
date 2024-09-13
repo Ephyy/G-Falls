@@ -1,5 +1,5 @@
 import { defineAction } from 'astro:actions';
-import pool from '../db/db';
+import pool from '../auth/auth.ts'
 
 export const server = {
     // action declarations
@@ -22,6 +22,8 @@ export const server = {
                     const user = res.rows[0];
                     // Check if the password is correct
                     if (user.password === password) {
+                        // Generate a session token
+
                         return { success: true, user };
                     } else {
                         return { success: false, message: 'Incorrect password' };

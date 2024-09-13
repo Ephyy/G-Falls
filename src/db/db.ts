@@ -1,11 +1,9 @@
 // db.ts
 import pg from 'pg';
-
-
 const { Pool } = pg;
 
-
 export const prerender = false;
+
 
 const pool = new Pool({
   host: import.meta.env.DATABASE_HOST,
