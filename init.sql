@@ -20,4 +20,3 @@ CREATE TABLE IF NOT EXISTS Sessions (
 
 -- Testing Data
 INSERT INTO Users (username, password, name, seccion) VALUES ('admin', 'admin', 'Admin', 0);
-INSERT INTO Users (username, password, name, seccion, photo) VALUES ('cinna', 'cinna', 'Cinnamoroll', 0, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVzl57p1CTvogfeCjXsNNFI5j9H_8qfiScbw&s');

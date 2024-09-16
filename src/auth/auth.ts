@@ -1,8 +1,8 @@
-import { Lucia } from "lucia";
+import { Lucia, TimeSpan } from "lucia";
 import { NodePostgresAdapter } from "@lucia-auth/adapter-postgresql";
 import pg from "pg";
 
-const pool = new pg.Pool(
+export const pool = new pg.Pool(
     {
         host: import.meta.env.DATABASE_HOST,
         database:  import.meta.env.DATABASE_DB,
@@ -13,21 +13,37 @@ const pool = new pg.Pool(
 );
 
 const adapter = new NodePostgresAdapter(pool, {
-	user: "User",
-	session: "Sessions"
+	user: "users",
+	session: "sessions"
 });
 
 export const lucia = new Lucia(adapter, {
+	sessionExpiresIn: new TimeSpan(1, "h"),
 	sessionCookie: {
 		attributes: {
 			// set to `true` when using HTTPS
 			secure: process.env.NODE_ENV === "production"
 		}
-	}
+	},
+	getUserAttributes: (attributes) => {
+		return {
+			name: attributes.name,
+			seccion: attributes.seccion,
+			photo: attributes.foto
+		};
+	},
+
 });
 
 declare module "lucia" {
 	interface Register {
 		Lucia: typeof lucia;
+		DatabaseUserAttributes: DatabaseUserAttributes;
 	}
+}
+
+interface DatabaseUserAttributes {
+	name: string;
+	seccion: number;
+	foto: string;
 }
