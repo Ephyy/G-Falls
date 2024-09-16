@@ -1,3 +1,14 @@
+---
+import { LogoutButton } from "../components/LogoutButton";
+export const prerender = false;
+
+const user = Astro.locals.user;
+
+if (!user) {
+  return Astro.redirect("/login");
+}
+---
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -16,16 +27,13 @@
             <li id="widget_perfil">
               <a class="perfil">
                 <h1>
-                  <img
-                    class="logo avatar chica"
-                    src="https://static.u-cursos.cl/r/usuario/7a/7a1226f7618cacc600a3d11a181ff177/datos_usuario/av_5d3b77e0799a3.jpg"
-                  />
-                  Vicente Ardiles Silva
+                  <img class="logo avatar chica" src={user.photo} />
+                  {user.name}
                 </h1>
               </a>
             </li>
             <li class="logout">
-              <a href=""> Salir </a>
+              <LogoutButton client:visible />
             </li>
           </ul>
           <div id="modulos">
@@ -61,7 +69,7 @@
                       />
                       <span>Introducción a la Programación</span>
                     </h1>
-                    <h2>CC1002-2</h2>
+                    <h2>CC1002-{user.seccion}</h2>
                   </a>
                 </li>
               </ul>
