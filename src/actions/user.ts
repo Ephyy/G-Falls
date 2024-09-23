@@ -1,4 +1,4 @@
-import { defineAction } from 'astro:actions';
+import { defineAction, ActionError } from 'astro:actions';
 import { pool, lucia } from "../auth/auth.ts";
 
 export const user = {
@@ -16,26 +16,29 @@ export const user = {
                 const res = await client.query('SELECT * FROM users WHERE username = $1', [userName]);
                 client.release();
                 
-                // If the user is found, return the user object
-                if (res.rows.length > 0) {
-                    const user = res.rows[0];
-                    // Check if the password is correct
-                    if (user.password === password) {
-                        // Generate a session token
-                        const session = await lucia.createSession(user.id, {});
-                        const sessionCookie = lucia.createSessionCookie(session.id);
-                        context.cookies.set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
-                        console.log("Logiado");
-                        return { success: true};
-                    } else {
-                        return { success: false, message: 'Incorrect password' };
-                    }
-                } else {
-                  return { success: false, message: 'User not found' };
+                // Check if the user exists
+                console.log("res", res.rows);
+                if (res.rows.length === 0 ) {
+                    return {success: false, message: "Credenciales incorrectas"};
                 }
-              } catch (err) {
-                    console.error(err);
-                    return { success: false, message: 'Database error' };
+
+                const user = res.rows[0];
+                // Check if the password is correct
+                if (user.password != password) {
+                    return {success: false, message: "Credenciales incorrectas"};
+                }
+                
+                // Generate a session token
+                const session = await lucia.createSession(user.id, {});
+                const sessionCookie = lucia.createSessionCookie(session.id);
+                context.cookies.set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
+                console.log('User logged in:', user.username);
+                return { success: true, message: "Login existoso"};
+            } catch (e) {
+                throw new ActionError({
+                    code: 'INTERNAL_SERVER_ERROR',
+                    message: 'An internal server error occurred'
+                });
             }
         }
     }),

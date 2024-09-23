@@ -29,8 +29,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
 	}
 	context.locals.session = session;
 	context.locals.user = user;
-	console.log("session", context.locals.session);
-	console.log("user loaded", context.locals.user);
+	// console.log("session", context.locals.session);
+	// console.log("user loaded", context.locals.user);
 	
 	return next();
 });

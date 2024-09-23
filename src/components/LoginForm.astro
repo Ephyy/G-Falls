@@ -1,13 +1,12 @@
 ---
-import { actions } from "astro:actions";
-
 export const prerender = "false";
-
-const result = Astro.getActionResult(actions.user.login);
-console.log("result login", result);
 ---
 
-<form id="login-form" method="POST" action={"/g-cursos" + actions.user.login}>
+<div id="error-message" class="hidden">
+  <p>Credenciales Invalidas</p>
+  <span id="attempts-left">Intentos restantes: 3</span>
+</div>
+<form id="login-form" method="POST">
   <div class="container">
     <h1>Login</h1>
     <div class="editor-field editor-field__textbox">
@@ -16,7 +15,13 @@ console.log("result login", result);
       </div>
 
       <div class="editor-field__container">
-        <input type="text" name="name" class="editor-field__input" required />
+        <input
+          type="text"
+          name="name"
+          class="editor-field__input"
+          autocomplete="off"
+          required
+        />
       </div>
       <span class="editor-field__bottom"></span>
       <div class="editor-field__noise"></div>
@@ -45,30 +50,59 @@ console.log("result login", result);
   </div>
 
   <script>
+    import { actions } from "astro:actions";
+    import { navigate } from "astro:transitions/client";
+
+    // Not real world app. Simple solution
+    let attemptsLeft = 3;
+    const errorMessage = document.getElementById("error-message");
+    const attemptsLeftElement = document.getElementById("attempts-left");
+
+    const form = document.querySelector("form");
+    form?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const formData = new FormData(form);
+      const result = await actions.user.login(formData);
+
+      if (result?.data?.success === false) {
+        attemptsLeft -= 1;
+        if (errorMessage) {
+          errorMessage.classList.remove("hidden");
+          if (attemptsLeftElement) {
+            attemptsLeftElement.textContent = `Intentos restantes: ${attemptsLeft}`;
+          }
+        }
+
+        if (attemptsLeft === 0) {
+          navigate("/refresh");
+        }
+      } else {
+        navigate("/g-cursos");
+      }
+    });
+  </script>
+
+  <script>
     // Thanks https://codepen.io/bsepiolo/pen/rNVYvWy
 
-    // Selecciona todos los elementos que tienen la clase 'my-input'
     const inputs = document.querySelectorAll(".editor-field__input");
-    // Función para generar ruido en los inputs
+
     const applyNoise = () => {
       inputs.forEach((input) => {
         generateNoise(input, "input");
       });
     };
 
-    // Función para remover ruido de los inputs
     const removeNoiseFromInputs = () => {
       inputs.forEach((input) => {
         removeNoise(input, "input");
       });
     };
 
-    // Ejecuta la función cuando el DOM esté completamente cargado
     document.addEventListener("DOMContentLoaded", () => {
       applyNoise();
     });
 
-    // Ejecuta la función cuando cambia la visibilidad de la ventana
     document.addEventListener("visibilitychange", () => {
       if (document.visibilityState === "visible") {
         applyNoise();
