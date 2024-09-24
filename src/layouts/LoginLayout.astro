@@ -1,0 +1,33 @@
+---
+import Layout from "./Layout.astro";
+---
+
+<Layout title="Login">
+  <slot />
+</Layout>
+
+<style lang="scss" is:global>
+  $black: #0f1020;
+  $white: #b3b5d2;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  input {
+    font-weight: 500;
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13.5px !important;
+    color: $white;
+    background: $black;
+    font-family: "Tomorrow";
+  }
+</style>

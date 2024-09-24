@@ -1,6 +1,4 @@
 
-import React from 'react'
-
 function CommandLine( {message, userInput} ) {
   return (
     <div>
@@ -20,4 +18,4 @@ function CommandLine( {message, userInput} ) {
   )
 }
 
-export default CommandLine
+export default CommandLine;

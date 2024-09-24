@@ -1,3 +1,4 @@
+import { navigate } from 'astro:transitions/client';
 
 
 
@@ -9,7 +10,7 @@ export default function Prompt( {onEnter} ) {
             const input = e.target.value;
             switch (input) {
                 case 'login.py':
-                    window.location.href = '/login'
+                    navigate('/login');
                     break;
                 default:
                     e.target.value = '';

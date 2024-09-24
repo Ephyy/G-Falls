@@ -1,11 +1,17 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import LoginLayout from "../layouts/LoginLayout.astro";
 ---
 
-<Layout title="Fallo de inicio">
-  <div class="container">
-    <h1>Haz superado la cantidad de ingresos</h1>
-    <p>Por favor, mira este video. Luego vuelve a intentar</p>
-    <a href="/login">Volver</a>
+<LoginLayout>
+  <div class="pb-6">
+    <h1 class="text-3xl">ACCESO DENEGADO</h1>
+    <h2 class="text-xl">Haz superado la cantidad de ingresos permitidos</h2>
   </div>
-</Layout>
+  <p class="text-lg">
+    Por favor, mira este <a
+      href="https://youtu.be/dQw4w9WgXcQ"
+      class="text-white underline">video.</a
+    >
+  </p>
+  <a href="/login">Volver</a>
+</LoginLayout>

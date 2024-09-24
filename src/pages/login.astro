@@ -3,15 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import LoginForm from "../components/LoginForm.astro";
 
 import "@fontsource/tomorrow";
+import LoginLayout from "../layouts/LoginLayout.astro";
 export const prerender = "false";
 ---
 
-<Layout title="Login">
+<LoginLayout title="Login">
   <LoginForm />
-</Layout>
-
-<style>
-  body {
-    font-family: "Tomorrow";
-  }
-</style>
+</LoginLayout>
