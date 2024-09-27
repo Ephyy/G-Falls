@@ -29,7 +29,7 @@ export const lucia = new Lucia(adapter, {
 		return {
 			name: attributes.name,
 			seccion: attributes.seccion,
-			photo: attributes.foto
+			photo: attributes.photo
 		};
 	},
 
@@ -45,5 +45,5 @@ declare module "lucia" {
 interface DatabaseUserAttributes {
 	name: string;
 	seccion: number;
-	foto: string;
+	photo: string;
 }

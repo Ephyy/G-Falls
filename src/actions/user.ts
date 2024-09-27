@@ -46,15 +46,13 @@ export const user = {
         handler: async (input, context) => {
 
             if (!context.locals.session) {
-                return new Response(null, {
-                    status: 401
-                });
+                return { success: false, message: "No hay una sesión activa" };
             }
 
             await lucia.invalidateSession(context.locals.session.id);
             const sessionCookie = lucia.createBlankSessionCookie();
             context.cookies.set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
-            return { success: true };
+            return { success: true, message: "Sesión cerrada" };
         }
     }),
 }

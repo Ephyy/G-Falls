@@ -62,7 +62,7 @@
       const result = await actions.user.login(formData);
 
       if (result?.data?.success) {
-        navigate("/g-cursos");
+        navigate("/g-cursos/");
       }
 
       if (result?.data?.success === false) {
