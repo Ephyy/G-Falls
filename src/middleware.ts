@@ -1,14 +1,6 @@
 import { lucia } from "./auth/auth.ts";
 import { defineMiddleware } from "astro:middleware";
 
-// export const onRequest = async (context, next) => {
-//     const response = await next();
-//     if (response.status === 404) {
-//       return context.rewrite("/");
-//     }
-//     return response;
-// }
-
 export const onRequest = defineMiddleware(async (context, next) => {
 	const sessionId = context.cookies.get(lucia.sessionCookieName)?.value ?? null;
 	

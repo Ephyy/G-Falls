@@ -1,0 +1,52 @@
+---
+import Mascota from "../../components/g-cursos/Mascota.astro";
+import GCursos from "../../components/g-cursos/GCursos.astro";
+import GCursosLayout from "../../layouts/GCursosLayout.astro";
+
+export const prerender = false;
+
+const pages = [
+  {
+    slug: "actas",
+    title: "actas",
+    message: "Tu situación final aún no ha sido enviada",
+  },
+  {
+    slug: "clases",
+    title: "clases",
+    message: "No hay eventos registrados",
+  },
+  {
+    slug: "encuestas",
+    title: "encuestas",
+    message: "No hay encuestas disponibles",
+  },
+  {
+    slug: "novedades",
+    title: "novedades",
+    message: "Nada publicado por aquí",
+  },
+  {
+    slug: "votaciones",
+    title: "votaciones",
+    message: "No hay votaciones",
+  },
+];
+
+const { slug } = Astro.params;
+const page = pages.find((page) => page.slug === slug);
+if (!page) return Astro.redirect("/404");
+const { title, message } = page;
+
+const user = Astro.locals.user;
+
+if (!user) {
+  return Astro.redirect("/login");
+}
+---
+
+<GCursosLayout>
+  <GCursos>
+    <Mascota mensaje={message} />
+  </GCursos>
+</GCursosLayout>

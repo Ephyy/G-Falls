@@ -1,0 +1,14 @@
+---
+import GCursos from "../../components/g-cursos/GCursos.astro";
+import GCursosLayout from "../../layouts/GCursosLayout.astro";
+
+const user = Astro.locals.user;
+
+if (!user) {
+  return Astro.redirect("/login");
+}
+---
+
+<GCursosLayout>
+  <GCursos> tests </GCursos>
+</GCursosLayout>

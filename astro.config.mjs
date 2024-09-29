@@ -15,5 +15,8 @@ export default defineConfig({
   },
   security: {
 		checkOrigin: true
-	}
+	},
+  redirects: {
+    '/g-cursos': '/g-cursos/historial',
+  }
 });
