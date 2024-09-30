@@ -1,5 +1,5 @@
 ---
-import GCursos from "../../components/g-cursos/GCursos.astro";
+import GCursos from "../../components/GCursos/GCursos.astro";
 import GCursosLayout from "../../layouts/GCursosLayout.astro";
 
 export const prerender = false;
@@ -13,6 +13,6 @@ if (!user) {
 console.log(user);
 ---
 
-<GCursosLayout>
-  <GCursos> tests </GCursos>
+<GCursosLayout user={user} servicio="historial" title="Historial">
+  test
 </GCursosLayout>

@@ -1,14 +1,21 @@
 ---
 import Servicios from "./Servicios.jsx";
+import type { User } from "lucia";
 
-const user = {
-  name: "Vicente Ardiles Silva",
-  photo:
-    "https://www.u-cursos.cl/d/images/avatars/7a1226f7618cacc600a3d11a181ff177.jpg",
-  seccion: 1,
-};
+// const user = {
+//   name: "Vicente Ardiles Silva",
+//   photo:
+//     "https://www.u-cursos.cl/d/images/avatars/7a1226f7618cacc600a3d11a181ff177.jpg",
+//   seccion: 1,
+// };
 
-const currentPath = Astro.url.pathname;
+interface Props {
+  user: User;
+  servicio: string;
+  title: string;
+}
+
+const { user, servicio, title } = Astro.props;
 ---
 
 <div id="header-content-wrapper">
@@ -303,15 +310,15 @@ const currentPath = Astro.url.pathname;
           <h2>CC1002-2 - Primavera 2024</h2>
         </div>
       </div>
-      <Servicios currentPath={currentPath} client:visible />
+      <Servicios nombreServicio={servicio} client:visible />
       <div id="navigation" class="ucursos">
         <ul id="navbar">
-          <li>Historial</li>
+          <li>{title}</li>
         </ul>
 
         <div id="mensajes" role="status"></div>
 
-        <h1 class="modulo">Historial</h1>
+        <h1 class="modulo">{title}</h1>
 
         <div id="body" role="main" class="ucursos clases classic">
           <slot />
@@ -319,27 +326,26 @@ const currentPath = Astro.url.pathname;
       </div>
     </div>
   </div>
-
-  <script>
-    import { actions } from "astro:actions";
-    import { navigate } from "astro:transitions/client";
-
-    const logoutButton = document.querySelector(".logout");
-
-    logoutButton?.addEventListener("click", async () => {
-      const result = await actions.user.logout();
-      if (result.data?.success) {
-        navigate("/login");
-      } else {
-        alert("Error al cerrar sesión");
-      }
-    });
-
-    const contactoButton = document.querySelector(".contact");
-    contactoButton?.addEventListener("click", () => {
-      alert(
-        "Cualquier problema, error, o comentario con la página, comunicarlo con Ephy 🐱‍💻"
-      );
-    });
-  </script>
 </div>
+<script>
+  import { actions } from "astro:actions";
+  import { navigate } from "astro:transitions/client";
+
+  const logoutButton = document.querySelector(".logout");
+
+  logoutButton?.addEventListener("click", async () => {
+    const result = await actions.user.logout();
+    if (result.data?.success) {
+      navigate("/login");
+    } else {
+      alert("Error al cerrar sesión");
+    }
+  });
+
+  const contactoButton = document.querySelector(".contact");
+  contactoButton?.addEventListener("click", () => {
+    alert(
+      "Cualquier problema, error, o comentario con la página, comunicarlo con Ephy 🐱‍💻"
+    );
+  });
+</script>
