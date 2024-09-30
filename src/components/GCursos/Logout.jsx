@@ -14,7 +14,7 @@ const Logout = () => {
 
     return (
         <a className="cursor-pointer" onClick={handleLogout}>
-            <span class="fa-solid fa-circle-xmark"></span> Salir
+            <span className="fa-solid fa-circle-xmark"></span> Salir
         </a>
     );
 };

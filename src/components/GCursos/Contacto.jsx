@@ -10,7 +10,7 @@ const Contacto = () => {
 
     return (
         <a className="cursor-pointer" onClick={handleContacto}>
-            <span class="fa-solid fa-envelope"></span> Contacto
+            <span className="fa-solid fa-envelope"></span> Contacto
         </a>
     )
 }

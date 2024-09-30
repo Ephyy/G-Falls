@@ -1,3 +1,81 @@
 ---
-export const prerender = true;
+import GCursosLayout from "@/layouts/GCursosLayout.astro";
+import MensajeForo from "@/components/GCursos/MensajeForo.jsx";
+
+export const prerender = false;
+
+const user = Astro.locals.user;
+
+if (!user) {
+  return Astro.redirect("/login");
+}
+
+console.log(user);
 ---
+
+<GCursosLayout user={user} servicio="foro" title="Foro">
+  <ul class="modulo">
+    <li class="sel"><a>Todos los Mensajes</a></li>
+    <li><a>Mis Mensajes</a></li>
+  </ul>
+  <form class="filtros">
+    <select
+      id="id_tema"
+      name="id_tema"
+      aria-label="Id Tema"
+      class="chosen"
+      style="display: none;"
+      ><option value="0">Todas las categorías</option></select
+    ><div
+      class="chosen-container chosen-container-single chosen-container-single-nosearch"
+      title=""
+      id="id_tema_chosen"
+      style="width: 141px;"
+    >
+      <a class="chosen-single">
+        <span>Todas las categorías</span>
+        <div><b></b></div>
+      </a>
+      <div class="chosen-drop">
+        <div class="chosen-search">
+          <input
+            class="chosen-search-input"
+            type="text"
+            autocomplete="off"
+            readonly=""
+          />
+        </div>
+        <ul class="chosen-results">
+          <li class="active-result result-selected" data-option-array-index="0">
+            Todas las categorías
+          </li>
+        </ul>
+      </div>
+    </div>
+  </form>
+  <h2>Todas las Categorías <em>1</em></h2>
+  <a id="agregar-mensaje" class="boton primary cursor-pointer"
+    >Agregar Mensaje</a
+  >
+  <div id="foro-container">
+    <MensajeForo
+      titulo="[SECRET]"
+      autor="Valentin Muñoz Apablaza"
+      fotoAutor="https://static.u-cursos.cl/r/usuario/83/83b668375eccc0e18923f76d2b871fc2/datos_usuario/av_6216e75c09e1b.jpg"
+      cargo="profesor_de_catedra"
+      fecha="Viernes 18 de Octubre a las 12:00"
+      client:visible
+    >
+      hola
+    </MensajeForo>
+  </div>
+</GCursosLayout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const agregarMensajeBtn = document.getElementById("agregar-mensaje");
+    agregarMensajeBtn?.addEventListener("click", () => {
+      alert("Acceso Denegado");
+    });
+  });
+</script>
