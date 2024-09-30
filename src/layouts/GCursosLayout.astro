@@ -1,5 +1,6 @@
 ---
 export const prerender = false;
+import { ViewTransitions } from "astro:transitions";
 ---
 
 <html lang="en">
@@ -16,6 +17,7 @@ export const prerender = false;
       type="text/css"
     />
     <link rel="stylesheet" href="/historial_v8771.css" type="text/css" />
+    <ViewTransitions />
   </head>
   <body class="logeado">
     <slot />
