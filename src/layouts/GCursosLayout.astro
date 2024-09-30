@@ -2,6 +2,8 @@
 import { ViewTransitions } from "astro:transitions";
 import Servicios from "@/components/GCursos/Servicios.jsx";
 import Logout from "@/components/GCursos/Logout.jsx";
+import Contacto from "@/components/GCursos/Contacto";
+
 import type { User } from "lucia";
 
 export const prerender = false;
@@ -80,11 +82,8 @@ const { user, servicio, title } = Astro.props;
                 </h1>
               </a>
             </li>
-            <li class="contact cursor-pointer">
-              <a
-                ><span class="fa-solid fa-envelope"></span>
-                <span>Contacto</span></a
-              >
+            <li>
+              <Contacto client:visible />
             </li>
             <li class="logout">
               <Logout client:visible />
@@ -345,15 +344,6 @@ const { user, servicio, title } = Astro.props;
     </div>
   </body>
 </html>
-
-<script>
-  const contactoButton = document.querySelector(".contact");
-  contactoButton?.addEventListener("click", () => {
-    alert(
-      "Cualquier problema, error, o comentario con la página, comunicarlo con Ephy 🐱‍💻"
-    );
-  });
-</script>
 
 <style is:global>
   #header a {
