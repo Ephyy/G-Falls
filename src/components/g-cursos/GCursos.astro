@@ -5,6 +5,54 @@ const user = {
     "https://www.u-cursos.cl/d/images/avatars/7a1226f7618cacc600a3d11a181ff177.jpg",
   seccion: 1,
 };
+
+const servicios = [
+  {
+    ref: "/g-cursos/actas",
+    icon: "https://static.u-cursos.cl/images/servicios/actas_v8712.svg",
+    title: "Acta",
+  },
+  {
+    ref: "/g-cursos/clases",
+    icon: "https://static.u-cursos.cl/images/servicios/clases_v8712.svg",
+    title: "Clase Virtual",
+  },
+  {
+    ref: "/g-cursos/encuestas",
+    icon: "https://static.u-cursos.cl/images/servicios/encuestas_v8712.svg",
+    title: "Encuestas",
+  },
+  {
+    ref: "/g-cursos/foro",
+    icon: "https://static.u-cursos.cl/images/servicios/foro_v8712.svg",
+    title: "Foro",
+  },
+  {
+    ref: "/g-cursos/historial",
+    icon: "https://static.u-cursos.cl/images/servicios/historial_v8712.svg",
+    title: "Historial",
+  },
+  {
+    ref: "/g-cursos/notas",
+    icon: "https://static.u-cursos.cl/images/servicios/notas_v8712.svg",
+    title: "Notas",
+  },
+  {
+    ref: "/g-cursos/novedades",
+    icon: "https://static.u-cursos.cl/images/servicios/novedades_v8712.svg",
+    title: "Novedades",
+  },
+  {
+    ref: "/g-cursos/tareas",
+    icon: "https://static.u-cursos.cl/images/servicios/tareas_v8712.svg",
+    title: "Tareas",
+  },
+  {
+    ref: "/g-cursos/votaciones",
+    icon: "https://static.u-cursos.cl/images/servicios/votaciones_v8712.svg",
+    title: "Votaciones",
+  },
+];
 ---
 
 <div id="header-content-wrapper">
@@ -52,7 +100,7 @@ const user = {
             </h1>
           </a>
         </li>
-        <li class="contact">
+        <li class="contact cursor-pointer">
           <a
             ><span class="fa-solid fa-envelope"></span>
             <span>Contacto</span></a
@@ -300,69 +348,16 @@ const user = {
         </div>
       </div>
       <ul class="modulos" role="navigation">
-        <li class="servicio">
-          <a
-            ><img
-              alt=""
-              src="https://static.u-cursos.cl/images/servicios/actas_v8712.svg"
-            />
-            <span>Acta</span>
-          </a>
-        </li>
-        <li class="servicio">
-          <a
-            ><img
-              alt=""
-              src="https://static.u-cursos.cl/images/servicios/clases_v8712.svg"
-            />
-            <span>Clase Virtual</span>
-          </a>
-        </li>
-        <li class="servicio">
-          <a
-            ><img
-              alt=""
-              src="https://static.u-cursos.cl/images/servicios/encuestas_v8712.svg"
-            />
-            <span>Encuestas</span>
-          </a>
-        </li>
-        <li class="servicio">
-          <a
-            ><img
-              alt=""
-              src="https://static.u-cursos.cl/images/servicios/foro_v8712.svg"
-            />
-            <span>Foro</span>
-          </a>
-        </li>
-        <li class="servicio sel">
-          <a
-            ><img
-              alt=""
-              src="https://static.u-cursos.cl/images/servicios/historial_v8712.svg"
-            />
-            <span>Historial</span>
-          </a>
-        </li>
-        <li class="servicio">
-          <a
-            ><img
-              alt=""
-              src="https://static.u-cursos.cl/images/servicios/notas_v8712.svg"
-            />
-            <span>Notas</span>
-          </a>
-        </li>
-        <li class="servicio">
-          <a
-            ><img
-              alt=""
-              src="https://static.u-cursos.cl/images/servicios/tareas_v8712.svg"
-            />
-            <span>Tareas</span>
-          </a>
-        </li>
+        {
+          servicios.map((servicio) => (
+            <li class="servicio">
+              <a href={servicio.ref}>
+                <img src={servicio.icon} alt="" />
+                <span>{servicio.title}</span>
+              </a>
+            </li>
+          ))
+        }
       </ul>
       <div id="navigation" class="ucursos">
         <ul id="navbar">
@@ -393,6 +388,13 @@ const user = {
       } else {
         alert("Error al cerrar sesión");
       }
+    });
+
+    const contactoButton = document.querySelector(".contact");
+    contactoButton?.addEventListener("click", () => {
+      alert(
+        "Cualquier problema, error, o comentario con la página, comunicarlo con Ephy 🐱‍💻"
+      );
     });
   </script>
 </div>
