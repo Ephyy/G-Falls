@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import Servicios from "@/components/GCursos/Servicios.jsx";
+import Logout from "@/components/GCursos/Logout.jsx";
 import type { User } from "lucia";
 
 export const prerender = false;
@@ -86,9 +87,7 @@ const { user, servicio, title } = Astro.props;
               >
             </li>
             <li class="logout">
-              <a style="cursor: pointer;">
-                <span class="fa-solid fa-circle-xmark"></span> Salir
-              </a>
+              <Logout client:visible />
             </li>
           </ul>
 
@@ -337,7 +336,7 @@ const { user, servicio, title } = Astro.props;
 
             <h1 class="modulo">{title}</h1>
 
-            <div id="body" role="main" class="ucursos clases classic">
+            <div id="body" role="main" class={`ucursos ${servicio} classic`}>
               <slot />
             </div>
           </div>
@@ -348,20 +347,6 @@ const { user, servicio, title } = Astro.props;
 </html>
 
 <script>
-  import { actions } from "astro:actions";
-  import { navigate } from "astro:transitions/client";
-
-  const logoutButton = document.querySelector(".logout");
-
-  logoutButton?.addEventListener("click", async () => {
-    const result = await actions.user.logout();
-    if (result.data?.success) {
-      navigate("/login");
-    } else {
-      alert("Error al cerrar sesión");
-    }
-  });
-
   const contactoButton = document.querySelector(".contact");
   contactoButton?.addEventListener("click", () => {
     alert(
