@@ -28,7 +28,7 @@ export default function Prompt( {onEnter} ) {
             <span className="text-fuchsia-600">/root</span>
             <span>#</span>
             <input
-                className="user-input text-zinc-50 bg-transparent ml-2"
+                className="user-input"
                 type="text"
                 spellCheck="false"
                 autoComplete="off"
