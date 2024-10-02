@@ -9,7 +9,7 @@ const MensajeForo = ({titulo, autor, fotoAutor, cargo, fecha, children}) => {
     };
 
     return (
-        <div>
+        <div className={isActive ? 'activo' : ''}>
             <div className="sticky objetoflex">
                 <div className={`cargo  cargo-${cargo}`} >
                     <img  
@@ -20,7 +20,7 @@ const MensajeForo = ({titulo, autor, fotoAutor, cargo, fecha, children}) => {
                 </div>
                 <div>
                     <h1>
-                      <a id="mensaje-titulo" className="cursor-pointer" onClick={handleTitleClick}>
+                      <a className="cursor-pointer" onClick={handleTitleClick}>
                         {titulo}
                       </a>
                       {/* <em title="cantidad de lecturas" class="lecturas">100</em> */}
