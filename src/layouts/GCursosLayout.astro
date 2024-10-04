@@ -6,6 +6,7 @@ import Contacto from "@/components/GCursos/Contacto";
 
 import type { User } from "lucia";
 import MenuNotification from "@/components/GCursos/MenuNotification";
+import Navbar from "@/components/GCursos/Navbar";
 
 export const prerender = false;
 
@@ -13,9 +14,10 @@ interface Props {
   user: User;
   servicio: string;
   title: string;
+  subTitle?: string;
 }
 
-const { user, servicio, title } = Astro.props;
+const { user, servicio, title, subTitle } = Astro.props;
 ---
 
 <html lang="en">
@@ -34,6 +36,7 @@ const { user, servicio, title } = Astro.props;
     <link rel="stylesheet" href="/historial_v8771.css" type="text/css" />
     <link rel="stylesheet" href="/foro_v8777.css" type="text/css" />
     <link rel="stylesheet" href="/notas_v33843.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="/tareas_v33849.css" type="text/css" /> -->
 
     <ViewTransitions />
   </head>
@@ -326,9 +329,7 @@ const { user, servicio, title } = Astro.props;
           </div>
           <Servicios nombreServicio={servicio} client:visible />
           <div id="navigation" class="ucursos">
-            <ul id="navbar">
-              <li>{title}</li>
-            </ul>
+            <Navbar servicio={servicio} title={title} subTitle={subTitle} />
 
             <div id="mensajes" role="status"></div>
 
