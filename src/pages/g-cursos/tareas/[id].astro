@@ -1,0 +1,41 @@
+---
+import GCursosLayout from "@/layouts/GCursosLayout.astro";
+import TareaInfo from "@/components/GCursos/tareas/TareaInfo.astro";
+import { tareas } from "@/data/tareas.ts";
+
+export const prerender = false;
+
+const { id } = Astro.params;
+const numericId = Number(id);
+
+let tareaEncontrada;
+let categoriaEncontrada;
+for (const categoria of tareas) {
+  const tarea = categoria.tarea.find((t) => t.id === numericId);
+  if (tarea) {
+    tareaEncontrada = tarea;
+    categoriaEncontrada = categoria.titulo;
+    break;
+  }
+}
+
+if (!tareaEncontrada || !categoriaEncontrada) {
+  throw new Error(`Tarea con id ${id} no encontrada`);
+}
+
+console.log(tareaEncontrada);
+
+const user = Astro.locals.user;
+if (!user) {
+  return Astro.redirect("/login");
+}
+---
+
+<GCursosLayout
+  user={user}
+  servicio="tareas"
+  title="Tareas"
+  subTitle={tareaEncontrada.nombre}
+>
+  <TareaInfo categoriaTarea={categoriaEncontrada} tarea={tareaEncontrada} />
+</GCursosLayout>
