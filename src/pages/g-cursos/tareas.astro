@@ -11,6 +11,8 @@ const user = Astro.locals.user;
 if (!user) {
   return Astro.redirect("/login");
 }
+
+let numeroTarea = 1;
 ---
 
 <GCursosLayout user={user} servicio="tareas" title="Tareas">
@@ -40,11 +42,11 @@ if (!user) {
           {tarea.tarea.map((tarea, index) => (
             <tbody>
               <tr class={index % 2 === 0 ? "even" : "odd"}>
-                <td class="number">{tarea.id}</td>
+                <td class="number">{numeroTarea++}</td>
                 <td class="string responsive-main">
                   <h1>
                     {tarea.nombre === "Tarea 3" ? (
-                      <a href="/g-cursos/tareas/tarea3">{tarea.nombre}</a>
+                      <a href="/g-cursos/tareas/12">{tarea.nombre}</a>
                     ) : (
                       <DeniedAccessAlert client:visible>
                         {tarea.nombre}
