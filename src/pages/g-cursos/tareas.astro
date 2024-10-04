@@ -1,3 +1,247 @@
 ---
+import DeniedAccessAlert from "@/components/GCursos/DeniedAccessAlert";
+import GCursosLayout from "@/layouts/GCursosLayout.astro";
+
+import { formatDateTime } from "@/utils/dates.ts";
+
 export const prerender = false;
+
+const user = Astro.locals.user;
+if (!user) {
+  return Astro.redirect("/login");
+}
+
+const tareas = [
+  {
+    titulo: "Laboratorio - Ejercicios Evaluados",
+    tarea: [
+      {
+        id: 1,
+        nombre:
+          "Laboratorio 07 - A Bodoque se le desordenaron los tazos 🔴🔀ӽ ",
+        fechaInicial: 1727796600,
+        fechaFinal: 1724299199,
+        estado: "Finalizada",
+      },
+      {
+        id: 2,
+        nombre:
+          "Laboratorio 06 - Bodoque no quiere (puede) ir a comprar al Supermercado 🌷",
+        fechaInicial: 1727191800,
+        fechaFinal: 1727319599,
+        estado: "Finalizada",
+      },
+      {
+        id: 3,
+        nombre:
+          "Laboratorio 05 - Bodoque y el dilema de la Torta de Cumpleaños 🎂",
+        fechaInicial: 1725982200,
+        fechaFinal: 1726109999,
+        estado: "Finalizada",
+      },
+      {
+        id: 4,
+        nombre:
+          "[No Evaluado] Laboratorio 04 - Bodoque y el enigma de los diminutivos",
+        fechaInicial: 1725379200,
+        fechaFinal: 1725508799,
+        estado: "Finalizada",
+      },
+      {
+        id: 5,
+        nombre: "Laboratorio 03 - Bodoque conoce al c.d. Anakena 🏆🏆👕",
+        fechaInicial: 1724776200,
+        fechaFinal: 1724903999,
+        estado: "Finalizada",
+      },
+      {
+        id: 6,
+        nombre: "Laboratorio 02 - Bodoque no ha entrenado para el TACO",
+        fechaInicial: 1724171400,
+        fechaFinal: 1724299199,
+        estado: "Finalizada",
+      },
+      {
+        id: 7,
+        nombre: "Laboratorio 01 - Bodoque no sabe leer fechas",
+        fechaInicial: 1723564800,
+        fechaFinal: 1723694399,
+        estado: "Finalizada",
+      },
+    ],
+  },
+  {
+    titulo: "Ejercicios Cátedra",
+    tarea: [
+      {
+        id: 8,
+        nombre: "Ejercicio 08 - Listas para volver del 18",
+        fechaInicial: 1727114400,
+        fechaFinal: 1727405999,
+        estado: "Finalizada",
+      },
+      {
+        id: 9,
+        nombre: "Ejercicio 07 - La aparición de las Faeranis",
+        fechaInicial: 1726241400,
+        fechaFinal: 1727233199,
+        estado: "Finalizada",
+      },
+      {
+        id: 10,
+        nombre: "Ejercicio 06 - Dividi Maxidi Ciu",
+        fechaInicial: 1725037200,
+        fechaFinal: 1725422399,
+        fechaAtraso: 1726023599,
+        estado: "Finalizada",
+      },
+      {
+        id: 11,
+        nombre: "Ejercicio 01 - Hora de programar!",
+        fechaInicial: 1723222800,
+        fechaFinal: 1723607999,
+        estado: "Finalizada",
+      },
+    ],
+  },
+  {
+    titulo: "Tareas",
+    tarea: [
+      {
+        id: 12,
+        nombre: "Tarea 3",
+        fechaInicial: 1729233600,
+        fechaFinal: 1731313199,
+        estado: "En Plazo",
+      },
+      {
+        id: 13,
+        nombre: "Tarea 2 - El Memorice Misterioso del Misterio",
+        fechaInicial: 1727092800,
+        fechaFinal: 1729133999,
+        estado: "Finalizada",
+      },
+      {
+        id: 14,
+        nombre: "Tarea 1 - La Máquina Tragamonedas del Misterio",
+        fechaInicial: 1724252400,
+        fechaFinal: 1726023599,
+        estado: "Finalizada",
+      },
+    ],
+  },
+];
 ---
+
+<GCursosLayout user={user} servicio="tareas" title="Tareas">
+  <table>
+    <colgroup>
+      <col class="col0 number" />
+      <col class="col1 string responsive-main" />
+      <col class="col2 string responsive no-movil" />
+    </colgroup>
+    <thead class="sticky">
+      <tr class="even">
+        <th class="number">Nº</th>
+        <th class="string responsive-main">Título</th>
+        <th class="string responsive no-movil">Estado</th>
+      </tr>
+    </thead>
+    {
+      tareas.map((tarea, index) => (
+        <>
+          <tbody>
+            <tr class="separador sticky odd" data-categoria={tarea.titulo}>
+              <td colspan="3" class="number">
+                {tarea.titulo}
+              </td>
+            </tr>
+          </tbody>
+          {tarea.tarea.map((tarea, index) => (
+            <tbody>
+              <tr class={index % 2 === 0 ? "even" : "odd"}>
+                <td class="number">{tarea.id}</td>
+                <td class="string responsive-main">
+                  <h1>
+                    {tarea.nombre === "Tarea 3" ? (
+                      <a href="/g-cursos/tareas/tarea3">{tarea.nombre}</a>
+                    ) : (
+                      <DeniedAccessAlert client:visible>
+                        {tarea.nombre}
+                      </DeniedAccessAlert>
+                    )}
+                  </h1>
+                  <div class="responsive-data only-movil no-print">
+                    <div class="responsive-row ">
+                      <span class="responsive-label">Estado</span>
+                      <h1>
+                        {tarea.estado}
+                        {/* <div class="pill wrong">✗ Sin Entrega</div> */}
+                      </h1>
+                      <h2>
+                        <span
+                          class="tiempo_rel"
+                          data-time={`${tarea.fechaInicial}`}
+                          data-hrs="1"
+                        >
+                          <span class="no-excel only-movil">
+                            {formatDateTime(tarea.fechaInicial).mobileFormat}
+                          </span>
+                          <span class="no-excel no-movil">
+                            {formatDateTime(tarea.fechaInicial).noMobileFormat}
+                          </span>
+                          <span class="only-excel">
+                            {formatDateTime(tarea.fechaInicial).excelFormat}
+                          </span>
+                        </span>{" "}
+                        hasta{" "}
+                        <span
+                          class="tiempo_rel"
+                          data-time={`${tarea.fechaFinal}`}
+                          data-hrs="1"
+                        >
+                          {formatDateTime(tarea.fechaFinal).noMobileFormat}
+                        </span>{" "}
+                      </h2>
+                    </div>
+                  </div>
+                </td>
+                <td class="string responsive no-movil">
+                  <h1>
+                    {tarea.estado}
+                    {/* <div class="pill wrong">✗ Sin Entrega</div> */}{" "}
+                  </h1>
+                  <h2>
+                    <span
+                      class="tiempo_rel"
+                      data-time={`${tarea.fechaInicial}`}
+                      data-hrs="1"
+                    >
+                      <span class="no-excel only-movil">
+                        {formatDateTime(tarea.fechaInicial).mobileFormat}
+                      </span>
+                      <span class="no-excel no-movil">
+                        {formatDateTime(tarea.fechaInicial).noMobileFormat}
+                      </span>
+                      <span class="only-excel">
+                        {formatDateTime(tarea.fechaInicial).excelFormat}
+                      </span>
+                    </span>{" "}
+                    hasta{" "}
+                    <span
+                      class="tiempo_rel"
+                      data-time={`${tarea.fechaFinal}`}
+                      data-hrs="1"
+                    >
+                      {formatDateTime(tarea.fechaFinal).noMobileFormat}
+                    </span>{" "}
+                  </h2>
+                </td>
+              </tr>
+            </tbody>
+          ))}
+        </>
+      ))
+    }
+  </table>
+</GCursosLayout>

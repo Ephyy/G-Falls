@@ -1,6 +1,7 @@
 ---
 import GCursosLayout from "@/layouts/GCursosLayout.astro";
 import MensajeForo from "@/components/GCursos/MensajeForo.jsx";
+import DeniedAccessAlert from "@/components/GCursos/DeniedAccessAlert";
 
 export const prerender = false;
 
@@ -54,9 +55,9 @@ console.log(user);
     </div>
   </form>
   <h2>Todas las Categorías <em>1</em></h2>
-  <a id="agregar-mensaje" class="boton primary cursor-pointer"
-    >Agregar Mensaje</a
-  >
+  <DeniedAccessAlert clases="boton primary" client:visible>
+    Agregar Mensaje
+  </DeniedAccessAlert>
   <div id="foro-container">
     <MensajeForo
       titulo="=== [SECRET] ==="

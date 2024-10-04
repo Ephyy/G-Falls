@@ -5,6 +5,7 @@ import Logout from "@/components/GCursos/Logout.jsx";
 import Contacto from "@/components/GCursos/Contacto";
 
 import type { User } from "lucia";
+import MenuNotification from "@/components/GCursos/MenuNotification";
 
 export const prerender = false;
 
@@ -168,7 +169,10 @@ const { user, servicio, title } = Astro.props;
               <h1>Primavera 2024</h1>
               <ul>
                 <li class="sel">
-                  <a title="Introducción a la Programación Sección 2">
+                  <a
+                    href="/g-cursos"
+                    title="Introducción a la Programación Sección 2"
+                  >
                     <h1>
                       {
                         user.seccion === 0 ? (
@@ -190,15 +194,7 @@ const { user, servicio, title } = Astro.props;
                     </h1>
                     <h2>CC1002-2</h2>
                   </a>
-                  <a
-                    class="nuevo"
-                    href="javascript:kernel.badgeToggle( 'instituciones' )">1</a
-                  >
-                  <ul class="nuevos active" id="n_institucion.2">
-                    <li>
-                      <a href="">Tareas (1)</a>
-                    </li>
-                  </ul>
+                  <MenuNotification client:visible />
                 </li>
                 <li class="">
                   <a title="Introducción a los Memes Sección 1">

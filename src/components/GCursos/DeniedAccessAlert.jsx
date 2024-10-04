@@ -3,7 +3,7 @@ function DeniedAccessAlert({clases='', children}) {
 
     const handleClick = () => {
         alert(
-            "ACCESO DENEGADO"
+            "⚠️ ACCESO DENEGADO ⚠️"
           );
     }
 
