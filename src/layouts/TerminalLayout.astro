@@ -3,7 +3,9 @@ import Layout from "./Layout.astro";
 ---
 
 <Layout title="launch">
-  <slot />
+  <div id="App">
+    <slot />
+  </div>
 </Layout>
 
 <style is:global>
@@ -51,6 +53,12 @@ import Layout from "./Layout.astro";
     color: #fafafa;
     font-family: Hack;
     font-weight: 700;
+  }
+
+  #App {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
   }
 
   #boot-sequence {

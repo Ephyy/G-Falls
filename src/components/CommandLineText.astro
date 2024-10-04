@@ -65,7 +65,7 @@ function printTerminal() {
 }
 ---
 
-<div class="flex gap-x-14">
+<div class="command-line-text">
   <div>
     {draw.map((line, index) => <div class="text-sky-500 ">{line}</div>)}
   </div>
@@ -77,3 +77,14 @@ function printTerminal() {
     }
   </div>
 </div>
+
+<style>
+  .command-line-text {
+    display: flex;
+    margin-top: 0.1rem;
+    margin-bottom: 0rem;
+
+    white-space: pre;
+    text-overflow: ellipsis;
+  }
+</style>
