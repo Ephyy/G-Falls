@@ -1,0 +1,86 @@
+---
+import type { TareaProps } from "@/types/Tarea";
+
+import { formatDateTime } from "@/utils/dates.ts";
+
+interface Props {
+  categoriaTarea: string;
+  tarea: TareaProps;
+}
+
+const { categoriaTarea, tarea } = Astro.props;
+---
+
+<div class="objeto">
+  <h1>
+    {tarea.nombre}
+    <div class={`pill ${tarea.estado === "En Plazo" ? "ok" : ""}`}>
+      {tarea.estado}
+    </div>
+  </h1>
+  <h2>{categoriaTarea}</h2>
+</div>
+<ul class="submodulo">
+  <li class="sel"><a>Detalle</a></li>
+  <!-- <li>
+    <a>Entregas</a>
+  </li>
+  <li>
+    <a>Editar</a>
+  </li> -->
+</ul>
+<table class="form" id="tarea">
+  <colgroup>
+    <col class="col0 undefined" />
+    <col class="col1 undefined" />
+  </colgroup>
+  <tbody>
+    <tr class="even">
+      <th style={{ width: "180px" }}>Desde</th>
+      <td>
+        <span
+          class="tiempo_rel"
+          data-time={tarea.fechaInicial.toString()}
+          data-hrs="1"
+        >
+          <span class="no-excel only-movil"
+            >{formatDateTime(tarea.fechaInicial).mobileFormat}</span
+          >
+          <span class="no-excel no-movil"
+            >{formatDateTime(tarea.fechaInicial).noMobileFormat}</span
+          >
+          <span class="only-excel"
+            >{formatDateTime(tarea.fechaInicial).excelFormat}</span
+          >
+        </span>
+      </td>
+    </tr>
+    <tr class="odd">
+      <th>Hasta</th>
+      <td
+        ><span
+          class="tiempo_rel"
+          data-time={tarea.fechaFinal.toString()}
+          data-hrs="1"
+          ><span class="no-excel only-movil"
+            >{formatDateTime(tarea.fechaFinal).mobileFormat}</span
+          ><span class="no-excel no-movil"
+            >{formatDateTime(tarea.fechaFinal).noMobileFormat}</span
+          ><span class="only-excel"
+            >{formatDateTime(tarea.fechaFinal).excelFormat}</span
+          ></span
+        >
+      </td>
+    </tr>
+    <tr class="even">
+      <th>Tiempo de Dedicación Estimado</th>
+      <td>10h</td>
+    </tr>
+    <tr class="odd">
+      <th>Descripción</th>
+      <td>
+        <span class="ta"> </span>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,6 +1,7 @@
 ---
 import DeniedAccessAlert from "@/components/GCursos/DeniedAccessAlert";
 import GCursosLayout from "@/layouts/GCursosLayout.astro";
+import Fecha from "@/components/GCursos/Fecha.astro";
 
 import { formatDateTime } from "@/utils/dates.ts";
 import { tareas } from "@/data/tareas.ts";
@@ -16,6 +17,16 @@ let numeroTarea = 1;
 ---
 
 <GCursosLayout user={user} servicio="tareas" title="Tareas">
+  <ul class="modulo">
+    <li class="sel">
+      <a href="tareas"> Tareas </a>
+    </li>
+    <li><a>Resumen</a></li>
+    <li><a>Carga Académica</a></li>
+  </ul>
+  <DeniedAccessAlert clases="boton primary" client:visible>
+    Agregar Tarea
+  </DeniedAccessAlert>
   <table>
     <colgroup>
       <col class="col0 number" />
@@ -61,28 +72,17 @@ let numeroTarea = 1;
                         {/* <div class="pill wrong">✗ Sin Entrega</div> */}
                       </h1>
                       <h2>
-                        <span
-                          class="tiempo_rel"
-                          data-time={`${tarea.fechaInicial}`}
-                          data-hrs="1"
-                        >
-                          <span class="no-excel only-movil">
-                            {formatDateTime(tarea.fechaInicial).mobileFormat}
-                          </span>
-                          <span class="no-excel no-movil">
-                            {formatDateTime(tarea.fechaInicial).noMobileFormat}
-                          </span>
-                          <span class="only-excel">
-                            {formatDateTime(tarea.fechaInicial).excelFormat}
-                          </span>
-                        </span>{" "}
+                        <Fecha timestamp={tarea.fechaInicial} withHour={true} />
                         hasta{" "}
                         <span
                           class="tiempo_rel"
                           data-time={`${tarea.fechaFinal}`}
                           data-hrs="1"
                         >
-                          {formatDateTime(tarea.fechaFinal).noMobileFormat}
+                          {
+                            formatDateTime(tarea.fechaFinal, true)
+                              .noMobileFormat
+                          }
                         </span>{" "}
                       </h2>
                     </div>
@@ -94,28 +94,14 @@ let numeroTarea = 1;
                     {/* <div class="pill wrong">✗ Sin Entrega</div> */}{" "}
                   </h1>
                   <h2>
-                    <span
-                      class="tiempo_rel"
-                      data-time={`${tarea.fechaInicial}`}
-                      data-hrs="1"
-                    >
-                      <span class="no-excel only-movil">
-                        {formatDateTime(tarea.fechaInicial).mobileFormat}
-                      </span>
-                      <span class="no-excel no-movil">
-                        {formatDateTime(tarea.fechaInicial).noMobileFormat}
-                      </span>
-                      <span class="only-excel">
-                        {formatDateTime(tarea.fechaInicial).excelFormat}
-                      </span>
-                    </span>{" "}
+                    <Fecha timestamp={tarea.fechaInicial} withHour={true} />
                     hasta{" "}
                     <span
                       class="tiempo_rel"
                       data-time={`${tarea.fechaFinal}`}
                       data-hrs="1"
                     >
-                      {formatDateTime(tarea.fechaFinal).noMobileFormat}
+                      {formatDateTime(tarea.fechaFinal, true).noMobileFormat}
                     </span>{" "}
                   </h2>
                 </td>

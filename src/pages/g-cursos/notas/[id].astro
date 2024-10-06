@@ -1,0 +1,52 @@
+---
+import GCursosLayout from "@/layouts/GCursosLayout.astro";
+import { notas } from "@/data/notas.ts";
+export const prerender = false;
+
+const { id } = Astro.params;
+const numericId = Number(id);
+
+let notaEncontrada;
+let categoriaEncontrada;
+for (const categoria of notas) {
+  const nota = categoria.notas.find((n) => n.id === numericId);
+  if (nota) {
+    notaEncontrada = nota;
+    categoriaEncontrada = categoria.titulo;
+    break;
+  }
+}
+
+if (!notaEncontrada || !categoriaEncontrada) {
+  throw new Error(`Tarea con id ${id} no encontrada`);
+}
+
+const user = Astro.locals.user;
+if (!user) {
+  return Astro.redirect("/login");
+}
+---
+
+<GCursosLayout
+  user={user}
+  servicio="notas"
+  title="Notas"
+  subTitle={notaEncontrada.nombre}
+>
+  <ul class="modulo">
+    <li class="sel"><a href="">Evaluaciones</a></li>
+    <li><a>Resumen</a></li>
+  </ul>
+  <div class="objeto">
+    <h1>
+      <div class="pill rainbow rainbow-40">Laboratios No Evaluados</div>
+    </h1>
+    <h2>
+      <span class="tiempo_rel" data-time="1725379200" data-hrs="">
+        <span class="no-excel only-movil">3 Sep</span>
+        <span class="no-excel no-movil">3 de septiembre</span>
+        <span class="only-excel">2024-09-03</span>
+      </span>
+    </h2>
+  </div>
+</GCursosLayout>

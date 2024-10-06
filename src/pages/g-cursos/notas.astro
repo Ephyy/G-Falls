@@ -2,6 +2,7 @@
 import DeniedAccessAlert from "@/components/GCursos/DeniedAccessAlert";
 import GCursosLayout from "@/layouts/GCursosLayout.astro";
 import { notas } from "@/data/notas.ts";
+import Fecha from "@/components/GCursos/Fecha.astro";
 
 export const prerender = false;
 
@@ -16,7 +17,8 @@ console.log(user);
 
 <GCursosLayout user={user} servicio="notas" title="Notas">
   <ul class="modulo">
-    <li class="sel"><a href="/g-cursos/notas">Evaluaciones</a></li>
+    <li class="sel"><a href="notas">Evaluaciones</a></li>
+    <li><a>Resumen</a></li>
   </ul>
   <DeniedAccessAlert clases="boton primary" client:visible>
     Agregar Evaluación
@@ -44,7 +46,7 @@ console.log(user);
             <tbody>
               <tr class="separador nodownload ">
                 <td colspan="3">
-                  <span>{nota.title}</span>
+                  <span>{nota.titulo}</span>
                 </td>
               </tr>
             </tbody>
@@ -53,12 +55,12 @@ console.log(user);
                 <tr class={index % 2 === 0 ? "even" : "odd"}>
                   <td class="number">{numeroNota++}</td>
                   <td class="string group" style="display: none;">
-                    {nota.title}
+                    {nota.titulo}
                   </td>
                   <td class="string">
                     <h1>
                       {n.nombre === "Tarea 3" ? (
-                        <a href="/g-cursos/notas/tarea3">{n.nombre}</a>
+                        <a href="/g-cursos/notas/17">{n.nombre}</a>
                       ) : (
                         <DeniedAccessAlert client:visible>
                           {n.nombre}
@@ -68,11 +70,8 @@ console.log(user);
                     </h1>
                     <h2 />
                     <h2>
-                      {n.fecha && (
-                        <span class="tiempo_rel" data-hrs="">
-                          {/* <span class="no-excel only-movil"></span> */}
-                          <span class="no-excel no-movil">{n.fecha}</span>
-                        </span>
+                      {"fecha" in n && n.fecha !== undefined && (
+                        <Fecha timestamp={n.fecha} />
                       )}
                     </h2>
                   </td>

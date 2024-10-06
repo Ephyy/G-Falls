@@ -1,0 +1,13 @@
+---
+import { formatDateTime } from "@/utils/dates.ts";
+---
+
+<div class="objeto">
+  <h1>
+    {tarea.nombre}
+    <div class={`pill ${tarea.estado === "En Plazo" ? "ok" : ""}`}>
+      {tarea.estado}
+    </div>
+  </h1>
+  <h2>{categoriaTarea}</h2>
+</div>
