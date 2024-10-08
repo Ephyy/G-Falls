@@ -1,7 +1,11 @@
 import { Lucia, TimeSpan } from "lucia";
 import { NodePostgresAdapter } from "@lucia-auth/adapter-postgresql";
-import { pool, tableNames } from "@/db/db.ts";
-const adapter = new NodePostgresAdapter(pool, tableNames);
+import { pool } from "@/db/db.ts";
+import { string } from "astro/zod";
+const adapter = new NodePostgresAdapter(pool, {
+	user: "users",
+	session: "sessions",
+});
 
 export const lucia = new Lucia(adapter, {
 	sessionExpiresIn: new TimeSpan(1, "h"),
@@ -13,7 +17,11 @@ export const lucia = new Lucia(adapter, {
 	},
 	getUserAttributes: (attributes) => {
 		return {
-			username: attributes.username,
+			nombre: attributes.nombre,
+			nombre_completo: attributes.nombre_completo,
+			iniciales: attributes.iniciales,
+			cargo: attributes.cargo,
+			avatar: attributes.avatar			
 		};
 	},
 
@@ -27,5 +35,9 @@ declare module "lucia" {
 }
 
 interface DatabaseUserAttributes {
-	username: string;
+	nombre: string;
+	nombre_completo: string;
+	iniciales: string;
+	cargo: string;
+	avatar?: string;
 }

@@ -16,12 +16,7 @@ export const user = {
             try {
                 const client = await pool.connect();
                 const res = await client.query(
-                    `SELECT u.*, ui.nombre_completo, ui.cargo, ui.avatar 
-                    FROM users u
-                    LEFT JOIN user_info ui 
-                    ON u.id = ui.user_id 
-                    WHERE u.username = $1`,
-                   [userName]
+                    `SELECT * FROM users WHERE username = $1`, [userName]
                 );
                 client.release();
                 
