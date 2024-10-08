@@ -1,5 +1,7 @@
 import { defineAction, ActionError } from 'astro:actions';
-import { pool, lucia } from "../auth/auth.ts";
+import { lucia } from "@/auth/auth.ts";
+import { pool } from "@/db/db.ts";
+
 
 export const user = {
     login: defineAction({
@@ -13,11 +15,17 @@ export const user = {
 
             try {
                 const client = await pool.connect();
-                const res = await client.query('SELECT * FROM users WHERE username = $1', [userName]);
+                const res = await client.query(
+                    `SELECT u.*, ui.nombre_completo, ui.cargo, ui.avatar 
+                    FROM users u
+                    LEFT JOIN user_info ui 
+                    ON u.id = ui.user_id 
+                    WHERE u.username = $1`,
+                   [userName]
+                );
                 client.release();
                 
                 // Check if the user exists
-                console.log("res", res.rows);
                 if (res.rows.length === 0 ) {
                     return {success: false, message: "Credenciales incorrectas"};
                 }
@@ -27,12 +35,11 @@ export const user = {
                 if (user.password != password) {
                     return {success: false, message: "Credenciales incorrectas"};
                 }
-                
+                console.log("login", user);
                 // Generate a session token
                 const session = await lucia.createSession(user.id, {});
                 const sessionCookie = lucia.createSessionCookie(session.id);
                 context.cookies.set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
-                console.log('User logged in:', user.username);
                 return { success: true, message: "Login existoso"};
             } catch (e) {
                 throw new ActionError({

@@ -1,13 +1,69 @@
 ---
+import type { NotaProps } from "@/types/Nota";
+import Fecha from "@/components/GCursos/Fecha.astro";
 import { formatDateTime } from "@/utils/dates.ts";
+
+interface Props {
+  categoriaNota: string;
+  nota: NotaProps;
+}
+
+const { categoriaNota, nota } = Astro.props;
 ---
 
 <div class="objeto">
   <h1>
-    {tarea.nombre}
-    <div class={`pill ${tarea.estado === "En Plazo" ? "ok" : ""}`}>
-      {tarea.estado}
+    {nota.nombre}
+    <div class="pill rainbow rainbow-40">
+      {categoriaNota}
     </div>
   </h1>
-  <h2>{categoriaTarea}</h2>
+  <h2>
+    {nota.fecha && <Fecha timestamp={nota.fecha} />}
+  </h2>
 </div>
+<ul class="submodulo">
+  <li class="sel">
+    <a>Notas</a>
+  </li>
+</ul>
+<table class="detalle">
+  <colgroup>
+    <col class="col0 undefined" />
+    <col class="col1 undefined" />
+  </colgroup>
+  <tbody>
+    <tr class="even">
+      <th>Ponderación</th>
+      <td>Porcentaje</td>
+    </tr>
+    <tr class="odd">
+      <th>Escala</th>
+      <td> 1.0 - 7.0 </td>
+    </tr>
+  </tbody>
+</table>
+<form id="formulario" autocomplete="off">
+  <input type="submit" value="Guardar" />
+  <table id="notas" class="sortable excel txt notas">
+    <caption> </caption>
+    <colgroup
+      ><col class="col0 number" /><col class="col1 string" /><col
+        class="col2 string only-print"
+      /><col class="col3 number" /><col
+        class="col4 string only-print"
+      /></colgroup
+    >
+    <thead class="sticky">
+      <tr class="even">
+        <th class="number">Nº</th>
+        <th class="string"><h1>Persona</h1><h2>RUT</h2></th>
+        <th class="string only-print">Estado</th>
+        <th class="number">Nota</th>
+        <th class="string only-print">Observaciones</th>
+      </tr>
+    </thead>
+    <tfoot></tfoot>
+  </table>
+  <input type="submit" value="Guardar" />
+</form>

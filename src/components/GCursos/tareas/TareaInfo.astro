@@ -1,5 +1,6 @@
 ---
 import type { TareaProps } from "@/types/Tarea";
+import Fecha from "@/components/GCursos/Fecha.astro";
 
 import { formatDateTime } from "@/utils/dates.ts";
 
@@ -38,38 +39,13 @@ const { categoriaTarea, tarea } = Astro.props;
     <tr class="even">
       <th style={{ width: "180px" }}>Desde</th>
       <td>
-        <span
-          class="tiempo_rel"
-          data-time={tarea.fechaInicial.toString()}
-          data-hrs="1"
-        >
-          <span class="no-excel only-movil"
-            >{formatDateTime(tarea.fechaInicial).mobileFormat}</span
-          >
-          <span class="no-excel no-movil"
-            >{formatDateTime(tarea.fechaInicial).noMobileFormat}</span
-          >
-          <span class="only-excel"
-            >{formatDateTime(tarea.fechaInicial).excelFormat}</span
-          >
-        </span>
+        <Fecha timestamp={tarea.fechaInicial} withHour dataHrs={1} />
       </td>
     </tr>
     <tr class="odd">
       <th>Hasta</th>
-      <td
-        ><span
-          class="tiempo_rel"
-          data-time={tarea.fechaFinal.toString()}
-          data-hrs="1"
-          ><span class="no-excel only-movil"
-            >{formatDateTime(tarea.fechaFinal).mobileFormat}</span
-          ><span class="no-excel no-movil"
-            >{formatDateTime(tarea.fechaFinal).noMobileFormat}</span
-          ><span class="only-excel"
-            >{formatDateTime(tarea.fechaFinal).excelFormat}</span
-          ></span
-        >
+      <td>
+        <Fecha timestamp={tarea.fechaFinal} withHour dataHrs={1} />
       </td>
     </tr>
     <tr class="even">

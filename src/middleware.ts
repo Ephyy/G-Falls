@@ -1,5 +1,7 @@
 import { lucia } from "./auth/auth.ts";
 import { defineMiddleware } from "astro:middleware";
+import type { MiddlewareHandler } from 'astro';
+
 
 export const onRequest = defineMiddleware(async (context, next) => {
 	const sessionId = context.cookies.get(lucia.sessionCookieName)?.value ?? null;
@@ -21,6 +23,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
 	}
 	context.locals.session = session;
 	context.locals.user = user;
+	
+	
 	// console.log("session", context.locals.session);
 	// console.log("user loaded", context.locals.user);
 	

@@ -17,11 +17,7 @@ const formattedDate = formatDateTime(timestamp, withHour);
     {formattedDate.mobileFormat}
   </span>
   <span class="no-excel no-movil">
-    {
-      withHour
-        ? formattedDate.noMobileFormat.replace(",", " a las") + " hrs."
-        : formattedDate.noMobileFormat
-    }
+    {formattedDate.noMobileFormat}
   </span>
   <span class="only-excel">
     {formattedDate.excelFormat}
