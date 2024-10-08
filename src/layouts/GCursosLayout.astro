@@ -81,11 +81,13 @@ const { user, servicio, title, subTitle } = Astro.props;
               <a class="perfil">
                 <h1>
                   <img
-                    alt="Vicente Ardiles Silva"
+                    alt={user.nombre}
                     class="logo avatar chica"
-                    src={user.photo}
+                    src={user.avatar
+                      ? user.avatar
+                      : `https://static.u-cursos.cl/images/siglas/${user.iniciales}.svg`}
                   />
-                  {user.name}
+                  {user.nombre}
                 </h1>
               </a>
             </li>
@@ -178,7 +180,7 @@ const { user, servicio, title, subTitle } = Astro.props;
                   >
                     <h1>
                       {
-                        user.seccion === 0 ? (
+                        user.cargo === "administrador" ? (
                           <img
                             src="https://www.u-cursos.cl/d/images/cargos/profesor.svg"
                             title="Profesor"

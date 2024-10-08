@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Fecha from "./Fecha";
 
 // cargos: profesor_de_catedra, profesor_auxiliar, ayudante
 const MensajeForo = ({titulo, autor, fotoAutor, cargo, fecha, children}) => {
@@ -28,11 +29,7 @@ const MensajeForo = ({titulo, autor, fotoAutor, cargo, fecha, children}) => {
                     <h2>
                         <a className="usuario">{autor}</a>
                         <em>
-                            <span className="tiempo_rel">
-                                {/* <span className="no-excel only-movil">{mobileDate}</span> */}
-                                <span className="no-excel no-movil">{fecha}</span>
-                                {/* <span className="only-excel">{excelDate}</span> */}
-                            </span>
+                            <Fecha timestamp={fecha} withHour={true} dataHrs={1} />
                         </em>
                     </h2>
                 </div>
@@ -53,11 +50,7 @@ const MensajeForo = ({titulo, autor, fotoAutor, cargo, fecha, children}) => {
                             {autor}
                         </a>
                         <em>
-                            <span className="tiempo_rel">
-                                {/* <span class="no-excel only-movil">28 Sep</span> */}
-                                <span className="no-excel no-movil">{fecha}</span>
-                                {/* <span class="only-excel">2024-09-28 19:06:28</span> */}
-                            </span>
+                            <Fecha timestamp={fecha} withHour={true} />
                         </em>
                         {/* Estrellita */}
                     </span>
