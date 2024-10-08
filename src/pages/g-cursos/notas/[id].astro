@@ -1,5 +1,6 @@
 ---
 import GCursosLayout from "@/layouts/GCursosLayout.astro";
+import NotaInfo from "@/components/GCursos/notas/NotaInfo.astro";
 import { notas } from "@/data/notas.ts";
 export const prerender = false;
 
@@ -37,16 +38,5 @@ if (!user) {
     <li class="sel"><a href="">Evaluaciones</a></li>
     <li><a>Resumen</a></li>
   </ul>
-  <div class="objeto">
-    <h1>
-      <div class="pill rainbow rainbow-40">Laboratios No Evaluados</div>
-    </h1>
-    <h2>
-      <span class="tiempo_rel" data-time="1725379200" data-hrs="">
-        <span class="no-excel only-movil">3 Sep</span>
-        <span class="no-excel no-movil">3 de septiembre</span>
-        <span class="only-excel">2024-09-03</span>
-      </span>
-    </h2>
-  </div>
+  <NotaInfo categoriaNota={categoriaEncontrada} nota={notaEncontrada} />
 </GCursosLayout>
