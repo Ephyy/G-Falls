@@ -12,6 +12,12 @@ CREATE TABLE IF NOT EXISTS Users (
   avatar text
 );
 
+CREATE TABLE IF NOT EXISTS Notas (
+  user_id int NOT NULL,
+  nota NUMERIC(2,1) NOT NULL DEFAULT 0.0 CHECK (nota >= 0 AND nota <= 7) ,
+  FOREIGN KEY (user_id) REFERENCES Users(id)
+);
+
 CREATE TABLE IF NOT EXISTS Sessions (
   id TEXT PRIMARY KEY,
   expires_at TIMESTAMPTZ NOT NULL,
@@ -24,5 +30,8 @@ INSERT INTO Users (username, password, nombre, nombre_completo, iniciales, cargo
 VALUES ('admin', 'admin', 'admin', 'admin', 'AD', 'administrador' ,'https://i.pinimg.com/736x/a7/ba/9e/a7ba9e0929f4215c00b13538b5928f33.jpg');
 INSERT INTO Users (username, password, nombre, nombre_completo, iniciales, cargo)
 VALUES ('ephy', 'ephy', 'Ephy', 'Ardiles Silva, Vicente Alejandro', 'VA', 'estudiante');
+INSERT INTO Users (username, password, nombre, nombre_completo, iniciales, cargo)
+VALUES ('ephy2', 'ephy2', 'Ephy 2', 'A S, Ephy', 'EP', 'estudiante');
 
-
+INSERT INTO Notas (user_id, nota) VALUES (2, 6.5);
+INSERT INTO Notas (user_id, nota) VALUES (3, 5.5);
