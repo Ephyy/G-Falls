@@ -12,6 +12,15 @@ const { categoriaNota, nota } = Astro.props;
 
 const { data, error } = await actions.getUsers();
 console.log(data);
+
+const user = Astro.locals.user;
+if (!user) {
+  return Astro.redirect("/login");
+}
+
+function getRandomNumber(min: number, max: number) {
+  return (Math.random() * (max - min) + min).toFixed(1);
+}
 ---
 
 <div class="objeto">
@@ -68,32 +77,38 @@ console.log(data);
     </thead>
     <tbody>
       {
-        data?.map((user, index) => (
+        data?.map((estudiante, index) => (
           <tr class={index % 2 === 0 ? "even" : "odd"}>
             <td class="number">{index + 1}</td>
             <td class="string">
               <div class="objetoflex">
                 <img
                   src="https://static.u-cursos.cl/images/avatar.jpg"
-                  alt={user.nombre}
+                  alt={estudiante.nombre}
                   class="photo foto chica"
                 />
                 <div>
-                  <h1>{user.nombre_completo}</h1>
-                  <h2>{user.nombre}</h2>
+                  <h1 class="nombre-completo">{estudiante.nombre_completo}</h1>
+                  <h2>{estudiante.nombre}</h2>
                 </div>
               </div>
             </td>
             <td class="string only-print">Activo</td>
             <td class="number">
-              <input
-                type="text"
-                name="notas[21963898][1]"
-                value=""
-                class=""
-                autocomplete="off"
-                tabindex="95"
-              />
+              {user.cargo === "administrador" ? (
+                <span>{estudiante.nota}</span>
+              ) : estudiante.id !== user.id ? (
+                <span>{getRandomNumber(6.0, 7.0)}</span>
+              ) : (
+                <input
+                  type="text"
+                  name="notas[21963898][1]"
+                  value=""
+                  class=""
+                  autocomplete="off"
+                  tabindex="95"
+                />
+              )}
             </td>
             <td class="only-print string" />
           </tr>
@@ -104,3 +119,9 @@ console.log(data);
   </table>
   <input type="submit" value="Guardar" />
 </form>
+
+<style>
+  .nombre-completo {
+    color: #bb8a1d;
+  }
+</style>
