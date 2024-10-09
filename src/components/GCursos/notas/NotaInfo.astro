@@ -1,6 +1,7 @@
 ---
 import type { NotaProps } from "@/types/Nota";
 import Fecha from "@/components/GCursos/Fecha.jsx";
+import { actions } from "astro:actions";
 
 interface Props {
   categoriaNota: string;
@@ -8,6 +9,9 @@ interface Props {
 }
 
 const { categoriaNota, nota } = Astro.props;
+
+const { data, error } = await actions.getUsers();
+console.log(data);
 ---
 
 <div class="objeto">
@@ -62,6 +66,40 @@ const { categoriaNota, nota } = Astro.props;
         <th class="string only-print">Observaciones</th>
       </tr>
     </thead>
+    <tbody>
+      {
+        data?.map((user, index) => (
+          <tr class={index % 2 === 0 ? "even" : "odd"}>
+            <td class="number">{index + 1}</td>
+            <td class="string">
+              <div class="objetoflex">
+                <img
+                  src="https://static.u-cursos.cl/images/avatar.jpg"
+                  alt={user.nombre}
+                  class="photo foto chica"
+                />
+                <div>
+                  <h1>{user.nombre_completo}</h1>
+                  <h2>{user.nombre}</h2>
+                </div>
+              </div>
+            </td>
+            <td class="string only-print">Activo</td>
+            <td class="number">
+              <input
+                type="text"
+                name="notas[21963898][1]"
+                value=""
+                class=""
+                autocomplete="off"
+                tabindex="95"
+              />
+            </td>
+            <td class="only-print string" />
+          </tr>
+        ))
+      }
+    </tbody>
     <tfoot></tfoot>
   </table>
   <input type="submit" value="Guardar" />
