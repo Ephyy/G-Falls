@@ -38,11 +38,7 @@ function InputNota({value=''}) {
     setInputValue(parsedNota);
     
     if (parsedNota !== value) {
-      if (parseFloat(parsedNota) < 4) {
-        setInputClass('wrong');
-      } else {
-        setInputClass('rojo');
-      }
+      setInputClass('rojo');
     } else {
       setInputClass('');
     }
@@ -51,11 +47,11 @@ function InputNota({value=''}) {
   return (
     <input
     type="text"
-    name="notas[21963898][1]"
+    name="nota"
     value={inputValue}
     className={inputClass}
-    autocomplete="off"
-    tabindex="95"
+    autoComplete="off"
+    tabIndex="95"
     onChange={handleChange}
     onBlur={handleBlur}
   />
