@@ -56,7 +56,12 @@ function getRandomNumber(min: number, max: number) {
     </tr>
   </tbody>
 </table>
-<form id="formulario" autocomplete="off">
+<form
+  id="formulario"
+  autocomplete="off"
+  method="POST"
+  action={actions.nota.cambiarNota}
+>
   <input type="submit" value="Guardar" />
   <table id="notas" class="sortable excel txt notas">
     <caption> </caption>
