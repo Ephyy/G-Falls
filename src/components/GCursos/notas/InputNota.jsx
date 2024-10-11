@@ -38,12 +38,15 @@ function InputNota({value=''}) {
     setInputValue(parsedNota);
     
     if (parsedNota !== value) {
-      setInputClass('rojo');
+      if (parseFloat(parsedNota) < 4) {
+        setInputClass('wrong');
+      } else {
+        setInputClass('rojo');
+      }
     } else {
       setInputClass('');
     }
   }
-
 
   return (
     <input
