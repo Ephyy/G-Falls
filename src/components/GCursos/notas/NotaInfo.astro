@@ -1,6 +1,7 @@
 ---
 import type { NotaProps } from "@/types/Nota";
 import Fecha from "@/components/GCursos/Fecha.jsx";
+import InputNota from "@/components/GCursos/notas/InputNota.jsx";
 import { actions } from "astro:actions";
 
 interface Props {
@@ -100,14 +101,7 @@ function getRandomNumber(min: number, max: number) {
               ) : estudiante.id !== user.id ? (
                 <span>{getRandomNumber(6.0, 7.0)}</span>
               ) : (
-                <input
-                  type="text"
-                  name="notas[21963898][1]"
-                  value=""
-                  class=""
-                  autocomplete="off"
-                  tabindex="95"
-                />
+                <InputNota value={estudiante.nota} client:visible />
               )}
             </td>
             <td class="only-print string" />
