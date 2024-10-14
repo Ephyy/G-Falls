@@ -1,7 +1,7 @@
 import { Lucia, TimeSpan } from "lucia";
 import { NodePostgresAdapter } from "@lucia-auth/adapter-postgresql";
 import { pool } from "@/db/db.ts";
-import { string } from "astro/zod";
+
 const adapter = new NodePostgresAdapter(pool, {
 	user: "users",
 	session: "sessions",

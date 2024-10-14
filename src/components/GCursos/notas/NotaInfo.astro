@@ -4,6 +4,10 @@ import Fecha from "@/components/GCursos/Fecha.jsx";
 import InputNota from "@/components/GCursos/notas/InputNota.jsx";
 import { actions } from "astro:actions";
 
+function getRandomNumber(min: number, max: number) {
+  return (Math.random() * (max - min) + min).toFixed(1);
+}
+
 interface Props {
   categoriaNota: string;
   nota: NotaProps;
@@ -19,8 +23,9 @@ if (!user) {
   return Astro.redirect("/login");
 }
 
-function getRandomNumber(min: number, max: number) {
-  return (Math.random() * (max - min) + min).toFixed(1);
+const result = Astro.getActionResult(actions.nota.cambiarNota);
+if (result) {
+  console.log(result);
 }
 ---
 
@@ -59,7 +64,7 @@ function getRandomNumber(min: number, max: number) {
 <form
   id="formulario"
   autocomplete="off"
-  method="POST"
+  method="post"
   action={actions.nota.cambiarNota}
 >
   <input type="submit" value="Guardar" />

@@ -1,23 +1,36 @@
-import { defineAction } from 'astro:actions';
-import { z } from 'astro:schema';
-
-const notaSchema = z.string().refine((val) => {
-  const parsed = parseFloat(val);
-  console.log(parsed);
-  return !isNaN(parsed) && parsed >= 1 && parsed <= 7;
-}, {
-  message: "El valor debe ser un número entre 1 y 7",
-});
+import { ActionError, defineAction } from 'astro:actions';
+import { pool } from '@/db/db';
 
 export const nota = {
   cambiarNota: defineAction({
     accept: "form",
-    input: z.object({
-      valorNota: notaSchema,
-    }),
-    handler: async ({valorNota}) => {
-      console.log(`Nota cambiada a ${valorNota}`);
-      return 
+    handler: async (input, context) => {
+
+      const nuevaNota = input.get('nota');
+
+      if (!context.locals.user) {
+        throw new ActionError({
+          code: "UNAUTHORIZED",
+          message: "Usuario debe estar autenticado",
+        });
+      }
+      // Modificar la nota en la base de datos
+      const query = {
+        text: 'UPDATE notas SET nota = $1 WHERE user_id = $2',
+        values: [nuevaNota, context.locals.user.id]
+      }
+
+      try {
+        const result = await pool.query(query);
+        console.log(result);
+  
+        return {success: true, message: "Nota modificada con exito"};
+      } catch (e) {
+        throw new ActionError({
+            code: 'INTERNAL_SERVER_ERROR',
+            message: 'An internal server error occurred'
+        });
+      }
     }
   })
 }

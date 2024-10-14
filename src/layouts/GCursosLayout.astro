@@ -332,7 +332,7 @@ const { user, servicio, title, subTitle } = Astro.props;
           <div id="navigation" class="ucursos">
             <Navbar servicio={servicio} title={title} subTitle={subTitle} />
 
-            <div id="mensajes" role="status"></div>
+            <slot name="mensajes" />
 
             <h1 class="modulo">{title}</h1>
 

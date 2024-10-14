@@ -3,6 +3,7 @@ import DeniedAccessAlert from "@/components/GCursos/DeniedAccessAlert";
 import GCursosLayout from "@/layouts/GCursosLayout.astro";
 import { notas } from "@/data/notas.ts";
 import Fecha from "@/components/GCursos/Fecha.jsx";
+import Mensajes from "@/components/GCursos/Mensajes";
 
 export const prerender = false;
 
@@ -18,6 +19,9 @@ console.log(user);
 <GCursosLayout user={user} servicio="notas" title="Notas">
   <link rel="stylesheet" href="/notas_v33843.css" type="text/css" slot="head" />
 
+  <Mensajes slot="mensajes" client:visible> test </Mensajes>
+
+  <Fragment> </Fragment>
   <ul class="modulo">
     <li class="sel"><a href="notas">Evaluaciones</a></li>
     <li><a>Resumen</a></li>
