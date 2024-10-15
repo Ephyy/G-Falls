@@ -21,9 +21,9 @@ function parseNota(nota) {
 }
 
 
-function InputNota({value=''}) {
+function InputNota({value='',  className = '' }) {
   const [inputValue, setInputValue] = useState(value);
-  const [inputClass, setInputClass] = useState('');
+  const [inputClass, setInputClass] = useState(className);
 
   const handleChange = (event) => {
     const nota = event.target.value;

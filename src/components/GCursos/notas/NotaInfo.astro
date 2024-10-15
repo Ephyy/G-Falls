@@ -110,6 +110,12 @@ if (result) {
                 <span>{estudiante.nota}</span>
               ) : estudiante.id !== user.id ? (
                 <span>{getRandomNumber(6.0, 7.0)}</span>
+              ) : parseFloat(estudiante.nota) < 4 ? (
+                <InputNota
+                  value={estudiante.nota}
+                  className="wrong"
+                  client:visible
+                />
               ) : (
                 <InputNota value={estudiante.nota} client:visible />
               )}
