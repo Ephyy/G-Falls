@@ -21,6 +21,7 @@ export const server = {
                   notas 
                 ON 
                   users.id = notas.user_id
+                ORDER BY users.id
             `);
             client.release();
 
