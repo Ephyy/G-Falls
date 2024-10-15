@@ -11,9 +11,10 @@ function getRandomNumber(min: number, max: number) {
 interface Props {
   categoriaNota: string;
   nota: NotaProps;
+  onFormSuccess: any;
 }
 
-const { categoriaNota, nota } = Astro.props;
+const { categoriaNota, nota, onFormSuccess } = Astro.props;
 
 const { data, error } = await actions.getUsers();
 console.log(data);
@@ -25,7 +26,8 @@ if (!user) {
 
 const result = Astro.getActionResult(actions.nota.cambiarNota);
 if (result) {
-  console.log(result);
+  console.log("Nota cambiada con exito", result);
+  onFormSuccess(["Nota cambiada con exito"]);
 }
 ---
 

@@ -3,7 +3,6 @@ import DeniedAccessAlert from "@/components/GCursos/DeniedAccessAlert";
 import GCursosLayout from "@/layouts/GCursosLayout.astro";
 import { notas } from "@/data/notas.ts";
 import Fecha from "@/components/GCursos/Fecha.jsx";
-import Mensajes from "@/components/GCursos/Mensajes";
 
 export const prerender = false;
 
@@ -18,78 +17,76 @@ console.log(user);
 
 <GCursosLayout user={user} servicio="notas" title="Notas">
   <link rel="stylesheet" href="/notas_v33843.css" type="text/css" slot="head" />
-
-  <Mensajes slot="mensajes" client:visible> test </Mensajes>
-
-  <Fragment> </Fragment>
-  <ul class="modulo">
-    <li class="sel"><a href="notas">Evaluaciones</a></li>
-    <li><a>Resumen</a></li>
-  </ul>
-  <DeniedAccessAlert clases="boton primary" client:visible>
-    Agregar Evaluación
-  </DeniedAccessAlert>
-  <table>
-    <colgroup>
+  <Fragment>
+    <ul class="modulo">
+      <li class="sel"><a href="notas">Evaluaciones</a></li>
+      <li><a>Resumen</a></li>
+    </ul>
+    <DeniedAccessAlert clases="boton primary" client:visible>
+      Agregar Evaluación
+    </DeniedAccessAlert>
+    <table>
       <colgroup>
-        <col class="col0 number" />
-        <col class="col1 string group" />
-        <col class="col2 string" />
-        <col class="col3 bool" />
-      </colgroup>
-      <thead class="sticky">
-        <tr class="even">
-          <th class="number">Nº</th>
-          <th class="string group" style="display: none;">Categoría</th>
-          <th class="string">Evaluación</th>
-          <th class="bool">Publicada</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-      {
-        notas.map((nota, index) => (
-          <>
-            <tbody>
-              <tr class="separador nodownload ">
-                <td colspan="3">
-                  <span>{nota.titulo}</span>
-                </td>
-              </tr>
-            </tbody>
-            {nota.notas.map((n, i) => (
+        <colgroup>
+          <col class="col0 number" />
+          <col class="col1 string group" />
+          <col class="col2 string" />
+          <col class="col3 bool" />
+        </colgroup>
+        <thead class="sticky">
+          <tr class="even">
+            <th class="number">Nº</th>
+            <th class="string group" style="display: none;">Categoría</th>
+            <th class="string">Evaluación</th>
+            <th class="bool">Publicada</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        {
+          notas.map((nota, index) => (
+            <>
               <tbody>
-                <tr class={index % 2 === 0 ? "even" : "odd"}>
-                  <td class="number">{numeroNota++}</td>
-                  <td class="string group" style="display: none;">
-                    {nota.titulo}
-                  </td>
-                  <td class="string">
-                    <h1>
-                      {n.nombre === "Tarea 3" ? (
-                        <a href="/g-cursos/notas/17">{n.nombre}</a>
-                      ) : (
-                        <DeniedAccessAlert client:visible>
-                          {n.nombre}
-                        </DeniedAccessAlert>
-                      )}
-                      <em />
-                    </h1>
-                    <h2 />
-                    <h2>
-                      {"fecha" in n && n.fecha !== undefined && (
-                        <Fecha timestamp={n.fecha} />
-                      )}
-                    </h2>
-                  </td>
-                  <td class="bool">
-                    <a class={`status_${n.publicada ? "on" : "off"}`} />
+                <tr class="separador nodownload ">
+                  <td colspan="3">
+                    <span>{nota.titulo}</span>
                   </td>
                 </tr>
               </tbody>
-            ))}
-          </>
-        ))
-      }
-    </colgroup>
-  </table>
+              {nota.notas.map((n, i) => (
+                <tbody>
+                  <tr class={index % 2 === 0 ? "even" : "odd"}>
+                    <td class="number">{numeroNota++}</td>
+                    <td class="string group" style="display: none;">
+                      {nota.titulo}
+                    </td>
+                    <td class="string">
+                      <h1>
+                        {n.nombre === "Tarea 3" ? (
+                          <a href="/g-cursos/notas/17">{n.nombre}</a>
+                        ) : (
+                          <DeniedAccessAlert client:visible>
+                            {n.nombre}
+                          </DeniedAccessAlert>
+                        )}
+                        <em />
+                      </h1>
+                      <h2 />
+                      <h2>
+                        {"fecha" in n && n.fecha !== undefined && (
+                          <Fecha timestamp={n.fecha} />
+                        )}
+                      </h2>
+                    </td>
+                    <td class="bool">
+                      <a class={`status_${n.publicada ? "on" : "off"}`} />
+                    </td>
+                  </tr>
+                </tbody>
+              ))}
+            </>
+          ))
+        }
+      </colgroup>
+    </table>
+  </Fragment>
 </GCursosLayout>
