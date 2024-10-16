@@ -1,16 +1,19 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
+
 
 function Mensajes({mensajes}) {
-  useEffect(() => {
-    if (mensajes.length > 0) {
-      console.log('Mensajes actualizados:', mensajes);
-      // Aquí puedes agregar cualquier lógica adicional que necesites cuando los mensajes cambien
-      
-    }
-  }, [mensajes]);
+  const [visible, setVisible] = useState(true);
+
+  const handleClick = () => {
+    setVisible(false);
+  }
+
+  if (!visible) {
+    return null;
+  }
 
   return (
-    <div id="mexito">
+    <div id="mexito" onClick={handleClick}>
     <a className="close">x</a>
     <ul>
       {mensajes?.map((message) => (

@@ -22,9 +22,8 @@ export const nota = {
 
       try {
         const result = await pool.query(query);
-        console.log(result);
   
-        return {success: true, message: "Nota modificada con exito"};
+        return {success: true, message: "Cambios guardados"};
       } catch (e) {
         throw new ActionError({
             code: 'INTERNAL_SERVER_ERROR',

@@ -3,6 +3,7 @@ import GCursosLayout from "@/layouts/GCursosLayout.astro";
 import NotaInfo from "@/components/GCursos/notas/NotaInfo.astro";
 import { notas } from "@/data/notas.ts";
 import Mensajes from "@/components/GCursos/Mensajes";
+import { actions } from "astro:actions";
 
 export const prerender = false;
 
@@ -35,6 +36,8 @@ const handleFormSuccess = (message: string[]) => {
   formSuccessMessage = message;
   console.log("handle success:", formSuccessMessage);
 };
+
+const result = Astro.getActionResult(actions.nota.cambiarNota);
 ---
 
 <GCursosLayout
@@ -44,20 +47,20 @@ const handleFormSuccess = (message: string[]) => {
   subTitle={notaEncontrada.nombre}
 >
   <link rel="stylesheet" href="/notas_v33843.css" type="text/css" slot="head" />
-  <Mensajes
-    mensajes={formSuccessMessage ?? []}
-    slot="mensajes"
-    client:visible
-  />
+  {
+    result && (
+      <Mensajes
+        mensajes={[result.data?.message]}
+        slot="mensajes"
+        client:visible
+      />
+    )
+  }
   <Fragment>
     <ul class="modulo">
       <li class="sel"><a href="">Evaluaciones</a></li>
       <li><a>Resumen</a></li>
     </ul>
-    <NotaInfo
-      categoriaNota={categoriaEncontrada}
-      nota={notaEncontrada}
-      onFormSuccess={handleFormSuccess}
-    />
+    <NotaInfo categoriaNota={categoriaEncontrada} nota={notaEncontrada} />
   </Fragment>
 </GCursosLayout>
