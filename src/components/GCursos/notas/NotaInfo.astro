@@ -103,6 +103,11 @@ if (result) {
                   <h2>{estudiante.nombre}</h2>
                 </div>
               </div>
+              {estudiante.nota !== "0.0" && estudiante.id == user.id && (
+                <div class="noprint box gris obs dialog dialog-top">
+                  <span class="ta">test</span>
+                </div>
+              )}
             </td>
             <td class="string only-print">Activo</td>
             <td class="number">
