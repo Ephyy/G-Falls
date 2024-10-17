@@ -16,7 +16,6 @@ interface Props {
 const { categoriaNota, nota } = Astro.props;
 
 const { data, error } = await actions.getUsers();
-console.log(data);
 
 const user = Astro.locals.user;
 if (!user) {
@@ -103,7 +102,7 @@ if (result) {
                   <h2>{estudiante.nombre}</h2>
                 </div>
               </div>
-              {estudiante.nota !== "0.0" && estudiante.id == user.id && (
+              {estudiante.nota == 7 && estudiante.id == user.id && (
                 <div class="noprint box gris obs dialog dialog-top">
                   <span class="ta">test</span>
                 </div>

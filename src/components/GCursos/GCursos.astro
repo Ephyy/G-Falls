@@ -1,14 +1,7 @@
 ---
-import Servicios from "./Servicios.jsx";
 import type { User } from "lucia";
-
-// const user = {
-//   name: "Vicente Ardiles Silva",
-//   photo:
-//     "https://www.u-cursos.cl/d/images/avatars/7a1226f7618cacc600a3d11a181ff177.jpg",
-//   seccion: 1,
-// };
-
+import Servicios from "./Servicios.jsx";
+import Buscador from "@/components/GCursos/Buscador.jsx";
 interface Props {
   user: User;
   servicio: string;
@@ -38,18 +31,7 @@ const { user, servicio, title } = Astro.props;
           >
         </li>
         <li id="widget_buscador">
-          <form
-            action="https://www.u-cursos.cl/m/buscador/"
-            onsubmit="return document.getElementById( '__q' ).value != ''"
-          >
-            <input
-              type="text"
-              name="q"
-              id="__q"
-              placeholder="Buscar..."
-              title="Buscar"
-            /><button type="submit"><span>Buscar</span></button>
-          </form>
+          <Buscador client:visible />
         </li>
         <li id="widget_perfil" class="usuario.7a1226f7618cacc600a3d11a181ff177">
           <a class="perfil">
@@ -57,9 +39,9 @@ const { user, servicio, title } = Astro.props;
               <img
                 alt="Vicente Ardiles Silva"
                 class="logo avatar chica"
-                src={user.photo}
+                src={user.avatar}
               />
-              {user.name}
+              {user.nombre_completo}
             </h1>
           </a>
         </li>
@@ -154,7 +136,7 @@ const { user, servicio, title } = Astro.props;
               <a title="Introducción a la Programación Sección 2">
                 <h1>
                   {
-                    user.seccion === 0 ? (
+                    user.cargo === "administrador" ? (
                       <img
                         src="https://www.u-cursos.cl/d/images/cargos/profesor.svg"
                         title="Profesor"
@@ -327,25 +309,3 @@ const { user, servicio, title } = Astro.props;
     </div>
   </div>
 </div>
-<script>
-  import { actions } from "astro:actions";
-  import { navigate } from "astro:transitions/client";
-
-  const logoutButton = document.querySelector(".logout");
-
-  logoutButton?.addEventListener("click", async () => {
-    const result = await actions.user.logout();
-    if (result.data?.success) {
-      navigate("/login");
-    } else {
-      alert("Error al cerrar sesión");
-    }
-  });
-
-  const contactoButton = document.querySelector(".contact");
-  contactoButton?.addEventListener("click", () => {
-    alert(
-      "Cualquier problema, error, o comentario con la página, comunicarlo con Ephy 🐱‍💻"
-    );
-  });
-</script>
