@@ -1,0 +1,57 @@
+---
+import Fecha from "@/components/GCursos/Fecha.jsx";
+
+const servicios = {
+  foro: {
+    alt: "Foro",
+    icono: "https://static.u-cursos.cl/images/servicios/foro_v33859.svg",
+    url: "./foro",
+  },
+  notas: {
+    alt: "Notas",
+    icono: "https://static.u-cursos.cl/images/servicios/notas_v33859.svg",
+    url: "./notas",
+  },
+  tareas: {
+    alt: "Tareas",
+    icono: "https://static.u-cursos.cl/images/servicios/tareas_v33859.svg",
+    url: "./tareas",
+  },
+};
+
+interface Props {
+  tituloPost: string;
+  servicio: string;
+  fecha: number;
+}
+
+const { tituloPost, servicio, fecha } = Astro.props;
+---
+
+<div class="cargo cargo-profesor_de_catedra">
+  <img
+    alt={servicios[servicio].alt}
+    src={servicios[servicio].icono}
+    class="icono"
+  />
+</div>
+<div>
+  <h1>
+    <a href={servicios[servicio].url}>{tituloPost}</a>
+    <em>
+      <Fecha timestamp={fecha} withHour={true} dataHrs={1} />
+    </em>
+  </h1>
+  <h2>
+    <img
+      alt="Valentin Muñoz Apablaza"
+      class="logo avatar chica"
+      src="https://static.u-cursos.cl/r/usuario/83/83b668375eccc0e18923f76d2b871fc2/datos_usuario/av_6216e75c09e1b.jpg"
+    />
+    <a
+      class="usuario"
+      href="https://www.u-cursos.cl/usuario/83b668375eccc0e18923f76d2b871fc2/"
+      >Valentin Muñoz Apablaza</a
+    >
+  </h2>
+</div>

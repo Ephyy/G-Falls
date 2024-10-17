@@ -1,5 +1,6 @@
 ---
-import GCursosLayout from "../../layouts/GCursosLayout.astro";
+import ObjetoHistorial from "@/components/GCursos/ObjetoHistorial.astro";
+import GCursosLayout from "@/layouts/GCursosLayout.astro";
 
 export const prerender = false;
 
@@ -13,5 +14,20 @@ console.log(user);
 ---
 
 <GCursosLayout user={user} servicio="historial" title="Historial">
-  test
+  <ul class="c_0">
+    <li class="objetoflex">
+      <ObjetoHistorial
+        tituloPost="=== [SECRET] ==="
+        servicio="foro"
+        fecha={1729522800}
+      />
+    </li>
+    <li class="objetoflex">
+      <ObjetoHistorial
+        tituloPost="Tarea 3 <Nombre>"
+        servicio="tareas"
+        fecha={1729522800}
+      />
+    </li>
+  </ul>
 </GCursosLayout>
