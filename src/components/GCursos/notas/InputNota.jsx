@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 
 function parseNota(nota) {
@@ -24,6 +23,7 @@ function parseNota(nota) {
 function InputNota({value='',  className = '' }) {
   const [inputValue, setInputValue] = useState(value);
   const [inputClass, setInputClass] = useState(className);
+  const inputRef = useRef(null);
 
   const handleChange = (event) => {
     const nota = event.target.value;
@@ -44,6 +44,12 @@ function InputNota({value='',  className = '' }) {
     }
   }
 
+  const handleClick = (event) => {
+    if (inputRef.current) {
+      inputRef.current.select();
+    }
+  }
+
   return (
     <input
     type="text"
@@ -54,6 +60,8 @@ function InputNota({value='',  className = '' }) {
     tabIndex="95"
     onChange={handleChange}
     onBlur={handleBlur}
+    onClick={handleClick}
+    ref={inputRef}
   />
   )
 }
