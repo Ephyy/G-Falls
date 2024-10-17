@@ -112,7 +112,7 @@ export const notas = [
       notas: [
         {
           id: 15,
-          nombre: "Tarea 1",
+          nombre: "Tarea 1 - El Tragamonedas del Misterio",
           fecha: 1724256000,
           publicada: true,
         },

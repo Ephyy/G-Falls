@@ -1,10 +1,14 @@
-import { actions } from 'astro:actions';
-
 function Buscador() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (event.target.q.value === "secret") {
+      alert("Nota secreta: 1201")
+    }
+  }
+
   return (
     <form
-      method="POST"
-      action={actions.buscar}
+      onSubmit={handleSubmit}
     >
       <input
         type="text"

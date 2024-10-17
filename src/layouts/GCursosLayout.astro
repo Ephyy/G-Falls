@@ -7,7 +7,6 @@ import Contacto from "@/components/GCursos/Contacto";
 import MenuNotification from "@/components/GCursos/MenuNotification";
 import Navbar from "@/components/GCursos/Navbar";
 import Buscador from "@/components/GCursos/Buscador";
-import { actions } from "astro:actions";
 
 export const prerender = false;
 
@@ -61,15 +60,7 @@ const { user, servicio, title, subTitle } = Astro.props;
               >
             </li>
             <li id="widget_buscador">
-              <form method="POST" action={actions.buscar}>
-                <input
-                  type="text"
-                  name="q"
-                  id="__q"
-                  placeholder="Buscar..."
-                  title="Buscar"
-                /><button type="submit"><span>Buscar</span></button>
-              </form>
+              <Buscador client:visible />
             </li>
             <li
               id="widget_perfil"
