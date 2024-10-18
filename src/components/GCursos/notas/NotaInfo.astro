@@ -26,6 +26,8 @@ const result = Astro.getActionResult(actions.nota.cambiarNota);
 if (result) {
   console.log("Nota cambiada con exito", result);
 }
+
+console.log(data);
 ---
 
 <div class="objeto">
@@ -114,6 +116,12 @@ if (result) {
                 <span>{estudiante.nota}</span>
               ) : estudiante.id !== user.id ? (
                 <span>{getRandomNumber(6.0, 7.0)}</span>
+              ) : estudiante.nota === "111" ? (
+                <InputNota
+                  value={estudiante.nota}
+                  className="nota-verde"
+                  client:visible
+                />
               ) : parseFloat(estudiante.nota) < 4 ? (
                 <InputNota
                   value={estudiante.nota}
@@ -133,6 +141,13 @@ if (result) {
   </table>
   <input type="submit" value="Guardar" />
 </form>
+
+<style is:global>
+  .nota-verde {
+    color: black;
+    background-color: #aaffad;
+  }
+</style>
 
 <style>
   .nombre-completo {

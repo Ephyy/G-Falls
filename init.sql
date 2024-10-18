@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS Users (
 
 CREATE TABLE IF NOT EXISTS Notas (
   user_id int NOT NULL,
-  nota NUMERIC(2,1) NOT NULL DEFAULT 0.0 CHECK (nota >= 0 AND nota <= 7) ,
+  nota text,
+  observacion text NOT NULL DEFAULT '',
   FOREIGN KEY (user_id) REFERENCES Users(id)
 );
 
@@ -33,5 +34,5 @@ VALUES ('ephy', 'ephy', 'Ephy', 'Ardiles Silva, Vicente Alejandro', 'VA', 'estud
 INSERT INTO Users (username, password, nombre, nombre_completo, iniciales, cargo)
 VALUES ('ephy2', 'ephy2', 'Ephy 2', 'A S, Ephy', 'EP', 'estudiante');
 
-INSERT INTO Notas (user_id, nota) VALUES (2, 6.5);
-INSERT INTO Notas (user_id, nota) VALUES (3, 5.5);
+INSERT INTO Notas (user_id, nota) VALUES (2, 6.5, Mensaje Ephy);
+INSERT INTO Notas (user_id, nota) VALUES (3, 5.5, Mensaje Ephy2);

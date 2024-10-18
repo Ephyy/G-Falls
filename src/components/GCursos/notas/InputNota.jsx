@@ -33,15 +33,22 @@ function InputNota({value='',  className = '' }) {
   const handleBlur = (event) => {
     const nota = event.target.value;
 
-    // Parseamos la nota
-    const parsedNota = parseNota(nota);
-    setInputValue(parsedNota);
-    
-    if (parsedNota !== value) {
-      setInputClass('rojo');
-    } else {
-      setInputClass('');
+    // Verificamos si hubo cambios
+    if (nota !== value) {      
+      let parsedNota = '111';
+      if (nota !== '111') {
+        // Parseamos la nota
+        parsedNota = parseNota(nota);
+      }
+      
+      setInputValue(parsedNota);
+      if (parsedNota !== value) {
+        setInputClass('rojo');
+      } else {
+        setInputClass('');
+      }
     }
+    
   }
 
   const handleClick = (event) => {
