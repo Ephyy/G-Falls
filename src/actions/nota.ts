@@ -22,7 +22,9 @@ export const nota = {
 
       try {
         const result = await pool.query(query);
-  
+        if (nuevaNota === "111") {
+          return {success: true, message: "! Felicitaciones. Has encontrado la frase secreta !"};
+        }
         return {success: true, message: "Cambios guardados"};
       } catch (e) {
         throw new ActionError({
