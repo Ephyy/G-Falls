@@ -1,0 +1,21 @@
+---
+interface Props {
+  nombreCurso: string;
+  codigo: string;
+  seccion: string;
+}
+
+const { nombreCurso, codigo, seccion } = Astro.props;
+---
+
+<a title=`${nombreCurso} Sección ${seccion}`>
+  <h1>
+    <img
+      src="https://www.u-cursos.cl/d/images/cargos/alumno.svg"
+      title="Estudiante"
+      class="cargo"
+    />
+    <span>{nombreCurso}</span>
+  </h1>
+  <h2>{`${codigo}-${seccion}`}</h2>
+</a>

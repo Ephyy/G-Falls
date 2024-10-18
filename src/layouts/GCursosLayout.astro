@@ -7,8 +7,32 @@ import Contacto from "@/components/GCursos/Contacto";
 import MenuNotification from "@/components/GCursos/MenuNotification";
 import Navbar from "@/components/GCursos/Navbar";
 import Buscador from "@/components/GCursos/Buscador";
+import Curso from "@/components/GCursos/Curso.astro";
 
 export const prerender = false;
+
+const cursos = [
+  {
+    nombreCurso: "Introducción a los Memes",
+    codigo: "ME1135",
+    seccion: "1",
+  },
+  {
+    nombreCurso: "Introducción a la Vida Universitaria",
+    codigo: "ES1001",
+    seccion: "1",
+  },
+  {
+    nombreCurso: "Cálculo V",
+    codigo: "MA666",
+    seccion: "1",
+  },
+  {
+    nombreCurso: "Educación Física",
+    codigo: "DR1000A",
+    seccion: "1",
+  },
+];
 
 interface Props {
   user: User;
@@ -35,8 +59,6 @@ const { user, servicio, title, subTitle } = Astro.props;
     />
     <link rel="stylesheet" href="/historial_v8771.css" type="text/css" />
     <slot name="head" />
-    <!-- <link rel="stylesheet" href="/tareas_v33849.css" type="text/css" /> -->
-
     <ViewTransitions />
   </head>
   <body class="logeado">
@@ -189,32 +211,17 @@ const { user, servicio, title, subTitle } = Astro.props;
                   </a>
                   <MenuNotification client:visible />
                 </li>
-                <li class="">
-                  <a title="Introducción a los Memes Sección 1">
-                    <h1>
-                      <img
-                        src="https://www.u-cursos.cl/d/images/cargos/alumno.svg"
-                        title="Estudiante"
-                        class="cargo"
+                {
+                  cursos.map((curso) => (
+                    <li>
+                      <Curso
+                        nombreCurso={curso.nombreCurso}
+                        codigo={curso.codigo}
+                        seccion={curso.seccion}
                       />
-                      <span>Introducción a los Memes</span>
-                    </h1>
-                    <h2>ME1135-1</h2>
-                  </a>
-                </li>
-                <li class="">
-                  <a title="Introducción a la Vida Universitaria Sección 1">
-                    <h1>
-                      <img
-                        src="https://www.u-cursos.cl/d/images/cargos/alumno.svg"
-                        title="Estudiante"
-                        class="cargo"
-                      />
-                      <span>Introducción a la Vida Universitaria</span>
-                    </h1>
-                    <h2>ES1001-1</h2>
-                  </a>
-                </li>
+                    </li>
+                  ))
+                }
               </ul>
             </div>
             <div id="comunidades" class="pinned">
