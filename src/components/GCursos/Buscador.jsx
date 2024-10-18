@@ -1,8 +1,10 @@
 function Buscador() {
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (event.target.q.value === "secret") {
-      alert("Nota secreta: 1201")
+    if (event.target.q.value === "Weirdmageddon" ||
+      event.target.q.value === "weirdmageddon"
+    ) {
+      alert("Has probado colocar un 7 en binario?");
     }
   }
 
