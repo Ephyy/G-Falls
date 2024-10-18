@@ -104,11 +104,12 @@ console.log(data);
                   <h2>{estudiante.nombre}</h2>
                 </div>
               </div>
-              {estudiante.nota == 7 && estudiante.id == user.id && (
+              {(estudiante.nota === "111" && estudiante.id == user.id) ||
+              user.cargo === "administrador" ? (
                 <div class="noprint box gris obs dialog dialog-top">
-                  <span class="ta">test</span>
+                  <span class="ta">{estudiante.observacion}</span>
                 </div>
-              )}
+              ) : null}
             </td>
             <td class="string only-print">Activo</td>
             <td class="number">

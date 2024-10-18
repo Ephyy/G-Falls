@@ -14,7 +14,8 @@ export const server = {
                   users.nombre, 
                   users.nombre_completo, 
                   users.cargo, 
-                  notas.nota
+                  notas.nota,
+                  notas.observacion
                 FROM 
                   users
                 JOIN 

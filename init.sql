@@ -34,5 +34,5 @@ VALUES ('ephy', 'ephy', 'Ephy', 'Ardiles Silva, Vicente Alejandro', 'VA', 'estud
 INSERT INTO Users (username, password, nombre, nombre_completo, iniciales, cargo)
 VALUES ('ephy2', 'ephy2', 'Ephy 2', 'A S, Ephy', 'EP', 'estudiante');
 
-INSERT INTO Notas (user_id, nota) VALUES (2, 6.5, Mensaje Ephy);
-INSERT INTO Notas (user_id, nota) VALUES (3, 5.5, Mensaje Ephy2);
+INSERT INTO Notas (user_id, nota, observacion) VALUES (2, 6.5, 'Mensaje Ephy');
+INSERT INTO Notas (user_id, nota, observacion) VALUES (3, 5.5, 'Mensaje Ephy2');
