@@ -3,7 +3,7 @@ import LoginLayout from "../layouts/LoginLayout.astro";
 ---
 
 <LoginLayout>
-  <div class="pb-6">
+  <div class="pb-2">
     <h1 class="text-3xl">ACCESO DENEGADO</h1>
     <h2 class="text-xl">Haz superado la cantidad de ingresos permitidos.</h2>
   </div>
@@ -14,5 +14,7 @@ import LoginLayout from "../layouts/LoginLayout.astro";
     >
     para poder continuar.
   </p>
-  <a href="/login">Volver</a>
+  <a href="/login">
+    <button> Volver </button>
+  </a>
 </LoginLayout>
