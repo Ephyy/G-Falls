@@ -1,7 +1,13 @@
 ---
 import Fecha from "@/components/GCursos/Fecha.jsx";
 
-const servicios = {
+interface Servicio {
+  alt: string;
+  icono: string;
+  url: string;
+}
+
+const servicios: Record<string, Servicio> = {
   foro: {
     alt: "Foro",
     icono: "https://static.u-cursos.cl/images/servicios/foro_v33859.svg",
