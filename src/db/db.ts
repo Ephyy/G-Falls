@@ -21,7 +21,6 @@ const c = {
 // Configuración de Knex para el entorno actual
 // const knexConfig = config[environment];
 const knex = Knex(c);
-
 Model.knex(knex);
 
 // Verificar la conexión

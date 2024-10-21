@@ -2,6 +2,7 @@ import { Model } from 'objection';
 import type { RelationMappings } from 'objection';
 import Nota from '@/db/models/Nota';
 import Session from '@/db/models/Session';
+import knex from '@/db/db';
 
 interface User {
   id: number;
@@ -73,5 +74,8 @@ class User extends Model implements User {
     };
   }
 }
+
+Model.knex(knex);
+
 
 export default User;
