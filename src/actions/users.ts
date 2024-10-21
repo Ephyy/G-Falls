@@ -1,7 +1,6 @@
 import { defineAction, ActionError } from 'astro:actions';
 import { lucia } from "@/auth/auth.ts";
 import User from '@/db/models/User';
-import { log } from 'node_modules/astro/dist/core/logger/core';
 
 export const user = {
     login: defineAction({

@@ -1,7 +1,7 @@
 exports.up = function(knex) {
   return knex.schema
     .createTable('users', (table) => {
-      table.increments('id');
+      table.integer('id').primary();
       table.text('username').notNullable().unique();
       table.text('password').notNullable();
       table.text('nombre').notNullable();
@@ -16,7 +16,7 @@ exports.up = function(knex) {
       table.text('observacion').notNullable().defaultTo('');
     })
     .createTable('sessions', (table) => {
-      table.text('id').primary();
+      table.integer('id').primary();
       table.timestamp('expires_at').notNullable();
       table.integer('user_id').references('id').inTable('users').notNullable();
     });

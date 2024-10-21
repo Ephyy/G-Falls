@@ -12,7 +12,7 @@ class Session extends Model {
       required: ['id', 'expires_at', 'user_id'],
 
       properties: {
-        id: { type: 'string' },
+        id: { type: 'integer' },
         expires_at: { type: 'string', format: 'date-time' },
         user_id: { type: 'integer' },
       },

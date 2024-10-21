@@ -1,18 +1,39 @@
 import { Model } from 'objection';
+import type { RelationMappings } from 'objection';
 import Nota from '@/db/models/Nota';
 import Session from '@/db/models/Session';
 
-class User extends Model {
-  static get tableName() {
+interface User {
+  id: number;
+  username: string;
+  password: string;
+  nombre: string;
+  nombre_completo: string;
+  iniciales: string;
+  cargo: string;
+  avatar?: string;
+}
+
+class User extends Model implements User {
+  id!: number;
+  username!: string;
+  password!: string;
+  nombre!: string;
+  nombre_completo!: string;
+  iniciales!: string;
+  cargo!: string;
+  avatar?: string;
+
+  static get tableName(): string {
     return 'users';
   }
 
-  static get idColumn() {
+  static get idColumn(): string {
     return 'id';
   }
 
   // Definir los campos de la tabla
-  static get jsonSchema() {
+  static get jsonSchema(): object {
     return {
       type: 'object',
       required: ['username', 'password', 'nombre', 'nombre_completo', 'iniciales', 'cargo'],
@@ -31,7 +52,7 @@ class User extends Model {
   }
 
   // Relaciones
-  static get relationMappings() {
+  static get relationMappings(): RelationMappings {
     return {
       notas: {
         relation: Model.HasManyRelation,

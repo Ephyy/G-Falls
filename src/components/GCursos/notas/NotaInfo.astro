@@ -3,9 +3,15 @@ import type { NotaProps } from "@/types/Nota";
 import Fecha from "@/components/GCursos/Fecha.jsx";
 import InputNota from "@/components/GCursos/notas/InputNota.jsx";
 import { actions } from "astro:actions";
+import type User from "@/db/models/User";
 
 function getRandomNumber(min: number, max: number) {
   return (Math.random() * (max - min) + min).toFixed(1);
+}
+
+interface Estudiante extends User {
+  nota?: string;
+  observacion?: string;
 }
 
 interface Props {
@@ -14,7 +20,6 @@ interface Props {
 }
 
 const { categoriaNota, nota } = Astro.props;
-
 const { data, error } = await actions.getUsers();
 
 const user = Astro.locals.user;
@@ -89,7 +94,7 @@ console.log(data);
     </thead>
     <tbody>
       {
-        data?.map((estudiante, index) => (
+        data?.map((estudiante: Estudiante, index) => (
           <tr class={index % 2 === 0 ? "even" : "odd"}>
             <td class="number">{index + 1}</td>
             <td class="string">
@@ -123,14 +128,14 @@ console.log(data);
                   className="nota-verde"
                   client:visible
                 />
-              ) : parseFloat(estudiante.nota) < 4 ? (
+              ) : parseFloat(estudiante.nota ?? "0") < 4 ? (
                 <InputNota
-                  value={estudiante.nota}
+                  value={estudiante.nota ?? ""}
                   className="wrong"
                   client:visible
                 />
               ) : (
-                <InputNota value={estudiante.nota} client:visible />
+                <InputNota value={estudiante.nota ?? ""} client:visible />
               )}
             </td>
             <td class="only-print string" />

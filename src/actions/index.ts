@@ -9,11 +9,10 @@ export const server = {
             
           const users = await User.query()
             .select('users.id', 'users.nombre', 'users.nombre_completo', 'users.cargo', 'notas.nota', 'notas.observacion')
-            .joinRelated('notas')
+            .leftJoinRelated('notas')
             .orderBy('users.id');
   
           return users;
-
         }
     }),
     buscar: defineAction({
