@@ -26,10 +26,16 @@ const config = {
       database: process.env.DATABASE_DB
     },
     migrations: {
-      directory: './src/db/migrations'
+      directory: './src/db/migrations',
+      specific: {
+        connection: process.env.DATABASE_URL // Usar la URL de conexión para las seeds
+      }
     },
     seeds: {
-      directory: './src/db/seeds'
+      directory: './src/db/seeds',
+      specific: {
+        connection: process.env.DATABASE_URL // Usar la URL de conexión para las seeds
+      }
     }
   }
 };

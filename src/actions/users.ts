@@ -35,6 +35,7 @@ export const user = {
                 console.log(session, sessionCookie);
                 return { success: true, message: "Login existoso"};
             } catch (e) {
+                console.error('Error al realizar la operación en la base de datos:', e);
                 throw new ActionError({
                     code: 'INTERNAL_SERVER_ERROR',
                     message: 'An internal server error occurred'
