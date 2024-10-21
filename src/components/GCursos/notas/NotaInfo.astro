@@ -20,7 +20,7 @@ interface Props {
 }
 
 const { categoriaNota, nota } = Astro.props;
-const { data, error } = await actions.getUsers();
+const { data, error } = await actions.getEstudiantes();
 
 const user = Astro.locals.user;
 if (!user) {

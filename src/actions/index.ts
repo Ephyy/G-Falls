@@ -4,15 +4,15 @@ import { nota } from '@/actions/nota';
 import User from '@/db/models/User';
 
 export const server = {
-    getUsers: defineAction({
+    getEstudiantes: defineAction({
         handler: async () => {
             
-          const users = await User.query()
+          const estudiantes = await User.query()
             .select('users.id', 'users.nombre', 'users.nombre_completo', 'users.cargo', 'notas.nota', 'notas.observacion')
             .leftJoinRelated('notas')
+            .where('users.cargo', 'estudiante')
             .orderBy('users.id');
-  
-          return users;
+          return estudiantes;
         }
     }),
     buscar: defineAction({
