@@ -1,14 +1,11 @@
 import Knex from 'knex';
 import { Model } from 'objection';
-import knexConfig from '../../knexfile.js';
+import config from '../../knexfile';
 
-type Environment = 'development' | 'production';
+// Configuración de Knex
 
-// Determinar el entorno actual (desarrollo por defecto)
-const environment: Environment = (import.meta.env.NODE_ENV as Environment) || 'development';
-const config = knexConfig[environment];
 
-const knex = Knex(config);
+const knex = Knex(config.production);
 
 Model.knex(knex);
 
