@@ -19,18 +19,14 @@ const config = {
 
   production: {
     client: 'pg',
-    connection: {
-      host: process.env.DATABASE_HOST,
-      user: process.env.DATABASE_USER,
-      password: process.env.DATABASE_PASSWORD,
-      database: process.env.DATABASE_DB
-    },
+    connection:  process.env.DATABASE_URL,
     migrations: {
       directory: './src/db/migrations',
     },
     seeds: {
       directory: './src/db/seeds',
-    }
+    },
+    ssl: { rejectUnauthorized: false },
   }
 };
 

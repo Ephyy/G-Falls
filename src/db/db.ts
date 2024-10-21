@@ -3,9 +3,24 @@ import { Model } from 'objection';
 import config from '../../knexfile';
 
 // Configuración de Knex
+// Detectar el entorno actual
+const environment = process.env.NODE_ENV || 'development';
 
+const c = {
+  client: 'pg',
+  connection:  process.env.DATABASE_URL,
+  migrations: {
+    directory: './src/db/migrations',
+  },
+  seeds: {
+    directory: './src/db/seeds',
+  },
+  ssl: { rejectUnauthorized: false },
+};
 
-const knex = Knex(config.production);
+// Configuración de Knex para el entorno actual
+// const knexConfig = config[environment];
+const knex = Knex(c);
 
 Model.knex(knex);
 
