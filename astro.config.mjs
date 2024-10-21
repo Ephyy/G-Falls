@@ -11,7 +11,7 @@ export default defineConfig({
   }),
   server: {
     host: '0.0.0.0',
-    port: process.env.PORT || 4321, // Usa el puerto que Railway provee
+    port: parseInt(process.env.PORT) || 4321, // Usa el puerto que Railway provee
   },
   security: {
 		checkOrigin: true
