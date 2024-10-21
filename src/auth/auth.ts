@@ -1,6 +1,14 @@
+import pg from 'pg';
 import { Lucia, TimeSpan } from "lucia";
 import { NodePostgresAdapter } from "@lucia-auth/adapter-postgresql";
-import { pool } from "@/db/db.ts";
+
+export const pool = new pg.Pool({
+  host: import.meta.env.DATABASE_HOST,
+  database: import.meta.env.DATABASE_DB,
+  user: import.meta.env.DATABASE_USER,
+  password: import.meta.env.DATABASE_PASSWORD,
+  port: import.meta.env.DATABASE_PORT,
+});
 
 const adapter = new NodePostgresAdapter(pool, {
 	user: "users",

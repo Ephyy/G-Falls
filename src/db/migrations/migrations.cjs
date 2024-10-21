@@ -1,6 +1,4 @@
-import type { Knex } from "knex";
-
-exports.up = function(knex: Knex) {
+exports.up = function(knex) {
   return knex.schema
     .createTable('users', (table) => {
       table.increments('id');
@@ -24,7 +22,7 @@ exports.up = function(knex: Knex) {
     });
 };
 
-exports.down = function(knex: Knex) {
+exports.down = function(knex) {
   return knex.schema
     .dropTableIfExists('sessions')
     .dropTableIfExists('notas')

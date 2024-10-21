@@ -1,7 +1,7 @@
 import { defineAction, ActionError } from 'astro:actions';
 import { lucia } from "@/auth/auth.ts";
-import { pool } from "@/db/db.ts";
-
+import User from '@/db/models/User';
+import { log } from 'node_modules/astro/dist/core/logger/core';
 
 export const user = {
     login: defineAction({
@@ -14,27 +14,26 @@ export const user = {
             const password = input.get('password');
 
             try {
-                const client = await pool.connect();
-                const res = await client.query(
-                    `SELECT * FROM users WHERE username = $1`, [userName]
-                );
-                client.release();
+                // Buscar el usuario en la base de datos utilizando Objection.js
+                const user = await User.query().findOne({ username: userName });
                 
                 // Check if the user exists
-                if (res.rows.length === 0 ) {
-                    return {success: false, message: "Credenciales incorrectas"};
+                if (!user) {
+                    return { success: false, message: "Credenciales incorrectas" };
                 }
-
-                const user = res.rows[0];
+                
+                console.log(user);
+                
                 // Check if the password is correct
-                if (user.password != password) {
-                    return {success: false, message: "Credenciales incorrectas"};
+                if (user.password !== password) {
+                    return { success: false, message: "Credenciales incorrectas" };
                 }
-                console.log("login", user);
+                
                 // Generate a session token
                 const session = await lucia.createSession(user.id, {});
                 const sessionCookie = lucia.createSessionCookie(session.id);
                 context.cookies.set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
+                console.log(session, sessionCookie);
                 return { success: true, message: "Login existoso"};
             } catch (e) {
                 throw new ActionError({

@@ -1,5 +1,5 @@
 import { ActionError, defineAction } from 'astro:actions';
-import { pool } from '@/db/db';
+import Nota from '@/db/models/Nota';
 
 export const nota = {
   cambiarNota: defineAction({
@@ -21,7 +21,11 @@ export const nota = {
       }
 
       try {
-        const result = await pool.query(query);
+
+        const result = await Nota.query()
+          .patch({ nota: nuevaNota })
+          .where('user_id', context.locals.user.id);
+          
         if (nuevaNota === "111") {
           return {success: true, message: "! Felicitaciones ! Has encontrado tu frase secreta "};
         }

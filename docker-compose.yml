@@ -8,9 +8,7 @@ services:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     ports:
       - "${DATABASE_PORT}:${DATABASE_PORT}"
-    volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql # Monta tu archivo SQL en la carpeta correcta
-      
+
 networks:
   db-network:
     driver: bridge

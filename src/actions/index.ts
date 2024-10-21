@@ -1,32 +1,18 @@
 import { defineAction } from 'astro:actions';
-import { user } from './user';
-import { nota } from './nota';
-import { pool } from '@/db/db.ts';
+import { user } from '@/actions/users';
+import { nota } from '@/actions/nota';
+import User from '@/db/models/User';
 
 export const server = {
     getUsers: defineAction({
         handler: async () => {
             
-            const client = await pool.connect();
-            const res = await client.query(`
-                SELECT 
-                  users.id, 
-                  users.nombre, 
-                  users.nombre_completo, 
-                  users.cargo, 
-                  notas.nota,
-                  notas.observacion
-                FROM 
-                  users
-                JOIN 
-                  notas 
-                ON 
-                  users.id = notas.user_id
-                ORDER BY users.id
-            `);
-            client.release();
-
-            return res.rows;
+          const users = await User.query()
+            .select('users.id', 'users.nombre', 'users.nombre_completo', 'users.cargo', 'notas.nota', 'notas.observacion')
+            .joinRelated('notas')
+            .orderBy('users.id');
+  
+          return users;
 
         }
     }),

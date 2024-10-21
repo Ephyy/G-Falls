@@ -30,7 +30,7 @@ class User extends Model {
     };
   }
 
-  // Definir relaciones
+  // Relaciones
   static get relationMappings() {
     return {
       notas: {

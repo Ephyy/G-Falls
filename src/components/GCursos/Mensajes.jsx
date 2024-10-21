@@ -16,9 +16,9 @@ function Mensajes({mensajes}) {
     <div id="mexito" onClick={handleClick}>
     <a className="close">x</a>
     <ul>
-      {mensajes?.map((message) => (
-        <li>{message}</li>
-      ))}
+      {mensajes?.map((message, index) => (
+          <li key={index}>{message}</li>
+        ))}
     </ul>
     </div>
   )

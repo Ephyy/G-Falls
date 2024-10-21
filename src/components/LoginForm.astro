@@ -63,10 +63,10 @@
 
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
-    console.log("Form submitted");
     const formData = new FormData(form);
     const result = await actions.user.login(formData);
 
+    console.log(result);
     if (result?.data?.success) {
       navigate("/g-cursos");
     }
