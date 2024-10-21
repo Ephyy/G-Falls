@@ -1,5 +1,7 @@
 import { Model } from 'objection';
 import User from '@/db/models/User';
+import knex from '@/db/db';
+
 
 class Session extends Model {
   static get tableName() {
@@ -33,4 +35,5 @@ class Session extends Model {
   }
 }
 
+Model.knex(knex);
 export default Session;

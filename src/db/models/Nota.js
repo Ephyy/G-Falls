@@ -1,5 +1,6 @@
 import { Model } from 'objection';
 import User from '@/db/models/User';
+import knex from '@/db/db';
 
 class Nota extends Model {
   static get tableName() {
@@ -33,4 +34,5 @@ class Nota extends Model {
   }
 }
 
+Model.knex(knex);
 export default Nota;
