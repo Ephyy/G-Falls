@@ -20,13 +20,6 @@ export default function Prompt( {onEnter} ) {
         }
     }
     
-
-    // Variable width
-    const handleInput = (e) => {
-        const input = e.target
-        input.style.width = `${Math.max(input.value.length, 1)}ch`;
-    }
-
     return (
         <div className="flex">
             <span className='user-info-container'>
@@ -34,19 +27,15 @@ export default function Prompt( {onEnter} ) {
                 <span>:</span>
                 <span className="text-fuchsia-600">/root</span>
             </span>
-            <span className='user-input-container'>
-                <span className='px-2'>#</span>
-                <input
-                    className="user-input"
-                    type="text"
-                    spellCheck="false"
-                    autoComplete="off"
-                    autoFocus={true}
-                    onKeyDown={handleKeyDown}
-                    onInput={handleInput}
-                    style={{ width: '1ch' }} 
-                />
-            </span>
+            <span className='px-2'>#</span>
+            <input
+                className="user-input w-11/12"
+                type="text"
+                spellCheck="false"
+                autoComplete="off"
+                autoFocus={true}
+                onKeyDown={handleKeyDown}
+            />
         </div>
     );
 }
