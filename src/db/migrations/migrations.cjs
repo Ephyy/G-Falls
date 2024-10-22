@@ -10,7 +10,7 @@ exports.up = function(knex) {
       table.text('cargo').notNullable();
       table.text('avatar');
       table.text('nota');
-      table.text('observacion').defaultTo('');
+      table.text('observacion');
     })
     .createTable('sessions', (table) => {
       table.integer('id').primary();
