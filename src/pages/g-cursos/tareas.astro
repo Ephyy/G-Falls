@@ -56,8 +56,11 @@ let numeroTarea = 1;
                 <td class="number">{numeroTarea++}</td>
                 <td class="string responsive-main">
                   <h1>
-                    {tarea.nombre === "Tarea 3" ? (
-                      <a href="/g-cursos/tareas/12">{tarea.nombre}</a>
+                    {tarea.nombre ===
+                    "Tarea 3 (parte A) - Los Mensajes Misteriosos del Misterio" ? (
+                      <a href={`/g-cursos/tareas/${numeroTarea - 1}`}>
+                        {tarea.nombre}
+                      </a>
                     ) : (
                       <DeniedAccessAlert client:visible>
                         {tarea.nombre}
