@@ -34,8 +34,7 @@ export const user = {
                 
 
                 // Generate a session token
-                // const session = await lucia.createSession(user.id, {});
-                const session = await lucia.createSession(102, {});
+                const session = await lucia.createSession(user.id, {});
                 console.log("session", session);
                 const sessionCookie = lucia.createSessionCookie(session.id);
                 console.log("sessionCookie", sessionCookie);

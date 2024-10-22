@@ -13,7 +13,7 @@ exports.up = function(knex) {
       table.text('observacion');
     })
     .createTable('sessions', (table) => {
-      table.integer('id').primary();
+      table.text('id').primary();
       table.timestamp('expires_at').notNullable();
       table.integer('user_id').references('id').inTable('users').notNullable();
     });
