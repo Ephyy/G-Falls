@@ -17,6 +17,9 @@ export default defineConfig({
 		checkOrigin: true
 	},
   redirects: {
-    '/g-cursos/*': '/g-cursos/historial',
+    '/g-cursos/*': {
+      status: 302,
+      destination: '/g-cursos/historial'
+    }
   }
 });
