@@ -41,12 +41,12 @@ declare module "lucia" {
 		UserId: number;
 		DatabaseUserAttributes: DatabaseUserAttributes;
 	}
-}
-
-interface DatabaseUserAttributes {
-	nombre: string;
-	nombre_completo: string;
-	iniciales: string;
-	cargo: string;
-	avatar?: string;
+	
+	interface DatabaseUserAttributes {
+		nombre: string;
+		nombre_completo: string;
+		iniciales: string;
+		cargo: string;
+		avatar?: string;
+	}
 }
