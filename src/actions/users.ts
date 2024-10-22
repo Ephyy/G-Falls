@@ -31,8 +31,8 @@ export const user = {
                 // Generate a session token
                 const session = await lucia.createSession(user.id, {});
                 const sessionCookie = lucia.createSessionCookie(session.id);
-                context.cookies.set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
                 console.log(session, sessionCookie);
+                context.cookies.set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
                 return { success: true, message: "Login existoso"};
             } catch (e) {
                 console.error('Error al realizar la operación en la base de datos:', e);
