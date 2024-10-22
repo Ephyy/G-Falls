@@ -3,8 +3,8 @@ import { defineMiddleware, sequence} from "astro:middleware";
 
 
 const redirection = defineMiddleware(async (context, next) => {
-	// Verificar si la URL comienza con '/g-cursos/'
-	if (context.url.pathname.startsWith('/g-cursos/')) {
+	// Verificar si la URL comienza con '/g-cursos/' pero no es ya '/g-cursos/historial'
+	if (context.url.pathname.startsWith('/g-cursos/') && context.url.pathname !== '/g-cursos/historial') {
 		// Redirigir a '/g-cursos/historial'
 		return context.redirect('/g-cursos/historial', 302);
 	}
