@@ -4,7 +4,7 @@ function Buscador() {
     if (event.target.q.value === "Weirdmageddon" ||
       event.target.q.value === "weirdmageddon"
     ) {
-      alert("¿Has probado colocar un 7 en binario?");
+      alert("¿Has probado colocarte un 7 en binario?");
     }
   }
 

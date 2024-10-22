@@ -28,11 +28,6 @@ export const user = {
                     return { success: false, message: "Credenciales incorrectas" };
                 }
                 
-                console.log("user id", user.id);
-                console.log("Tipo de user.id:", typeof user.id);
-                
-                
-
                 // Generate a session token
                 const session = await lucia.createSession(user.id, {});
                 const sessionCookie = lucia.createSessionCookie(session.id);

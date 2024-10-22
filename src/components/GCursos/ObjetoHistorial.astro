@@ -4,7 +4,7 @@ import Fecha from "@/components/GCursos/Fecha.jsx";
 interface Servicio {
   alt: string;
   icono: string;
-  url: string;
+  url?: string;
 }
 
 const servicios: Record<string, Servicio> = {
@@ -22,6 +22,10 @@ const servicios: Record<string, Servicio> = {
     alt: "Tareas",
     icono: "https://static.u-cursos.cl/images/servicios/tareas_v33859.svg",
     url: "./tareas",
+  },
+  novedades: {
+    alt: "Novedades",
+    icono: "https://static.u-cursos.cl/images/servicios/novedades_v33859.svg",
   },
 };
 

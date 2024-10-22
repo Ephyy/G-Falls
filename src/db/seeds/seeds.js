@@ -8,7 +8,9 @@ const __dirname = path.dirname(__filename);
 
 export async function seed(knex) {
   // Deletes ALL existing entries
+  await knex('sessions').del();
   await knex('users').del();
+
 
   // Path to the CSV file
   const csvFilePath = path.join(__dirname, '..', 'data', 'users.csv');
@@ -27,6 +29,7 @@ export async function seed(knex) {
 
   // Read the CSV file
   const users = await readCSV(csvFilePath);
+
 
   // Insert seed entries for Users
   await knex('users').insert(users);

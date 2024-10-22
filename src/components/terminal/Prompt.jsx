@@ -2,12 +2,14 @@ import { navigate } from 'astro:transitions/client';
 
 export default function Prompt( {onEnter} ) {
 
+    const SECRET_COMMAND = "login";
+
     const handleKeyDown = (e) => {
         
         if (e.key === 'Enter') {
             const input = e.target.value;
             switch (input) {
-                case 'login.py':
+                case SECRET_COMMAND:
                     navigate('/login');
                     break;
                 default:
