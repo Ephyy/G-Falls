@@ -2,15 +2,6 @@ import { lucia } from "./auth/auth.ts";
 import { defineMiddleware, sequence} from "astro:middleware";
 
 
-const redirection = defineMiddleware(async (context, next) => {
-	// Verificar si la URL comienza con '/g-cursos/' pero no es ya '/g-cursos/historial'
-	if (context.url.pathname.startsWith('/g-cursos/') && context.url.pathname !== '/g-cursos/historial') {
-		// Redirigir a '/g-cursos/historial'
-		return context.redirect('/g-cursos/historial', 302);
-	}
-	return next();
-});
-
 const auth =  defineMiddleware(async (context, next) => {
 	const sessionId = context.cookies.get(lucia.sessionCookieName)?.value ?? null;
 	
@@ -35,4 +26,4 @@ const auth =  defineMiddleware(async (context, next) => {
 	return next();
 });
 
-export const onRequest = sequence(redirection, auth);
+export const onRequest = sequence(auth);
