@@ -9,6 +9,7 @@ export const nota = {
       const nuevaNota = input.get('nota') as FormDataEntryValue | null;
       const notaValue: string | undefined = nuevaNota !== null ? String(nuevaNota) : undefined;
 
+      
       if (!context.locals.user) {
         throw new ActionError({
           code: "UNAUTHORIZED",
@@ -20,8 +21,9 @@ export const nota = {
 
         const result = await User.query()
           .patch({ nota: notaValue })
-          .where('user_id', context.locals.user.id);
+          .where('id', context.locals.user.id);
           
+        console.log("result", result);
         if (nuevaNota === "111") {
           return {success: true, message: "! Felicitaciones ! Has encontrado tu frase secreta "};
         }
