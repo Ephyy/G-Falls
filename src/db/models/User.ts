@@ -52,7 +52,7 @@ class User extends Model implements User {
         cargo: { type: 'string' },
         avatar: { type: 'string', nullable: true },
         nota: { type: 'string', nullable: true },
-        observacion: { type: 'string', default: ''},
+        observacion: { type: 'string', nullable: true},
       },
     };
   }
