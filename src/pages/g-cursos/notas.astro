@@ -62,7 +62,9 @@ console.log(user);
                     <td class="string">
                       <h1>
                         {n.nombre === "Tarea 3" ? (
-                          <a href="/g-cursos/notas/17">{n.nombre}</a>
+                          <a href={`/g-cursos/notas/${numeroNota - 1}`}>
+                            {n.nombre}
+                          </a>
                         ) : (
                           <DeniedAccessAlert client:visible>
                             {n.nombre}
