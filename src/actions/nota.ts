@@ -1,12 +1,13 @@
+import User from '@/db/models/User';
 import { ActionError, defineAction } from 'astro:actions';
-import Nota from '@/db/models/Nota';
 
 export const nota = {
   cambiarNota: defineAction({
     accept: "form",
     handler: async (input, context) => {
 
-      const nuevaNota = input.get('nota');
+      const nuevaNota = input.get('nota') as FormDataEntryValue | null;
+      const notaValue: string | undefined = nuevaNota !== null ? String(nuevaNota) : undefined;
 
       if (!context.locals.user) {
         throw new ActionError({
@@ -14,16 +15,11 @@ export const nota = {
           message: "Usuario debe estar autenticado",
         });
       }
-      // Modificar la nota en la base de datos
-      const query = {
-        text: 'UPDATE notas SET nota = $1 WHERE user_id = $2',
-        values: [nuevaNota, context.locals.user.id]
-      }
 
       try {
 
-        const result = await Nota.query()
-          .patch({ nota: nuevaNota })
+        const result = await User.query()
+          .patch({ nota: notaValue })
           .where('user_id', context.locals.user.id);
           
         if (nuevaNota === "111") {

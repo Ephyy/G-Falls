@@ -9,9 +9,6 @@ exports.up = function(knex) {
       table.string('iniciales').notNullable();
       table.text('cargo').notNullable();
       table.text('avatar');
-    })
-    .createTable('notas', (table) => {
-      table.integer('user_id').references('id').inTable('users').notNullable();
       table.text('nota');
       table.text('observacion').notNullable().defaultTo('');
     })
@@ -25,6 +22,5 @@ exports.up = function(knex) {
 exports.down = function(knex) {
   return knex.schema
     .dropTableIfExists('sessions')
-    .dropTableIfExists('notas')
     .dropTableIfExists('users')
 };

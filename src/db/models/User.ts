@@ -1,6 +1,5 @@
 import { Model } from 'objection';
 import type { RelationMappings } from 'objection';
-import Nota from '@/db/models/Nota';
 import Session from '@/db/models/Session';
 import knex from '@/db/db';
 
@@ -13,6 +12,8 @@ interface User {
   iniciales: string;
   cargo: string;
   avatar?: string;
+  nota?: string;
+  observacion?: string;
 }
 
 class User extends Model implements User {
@@ -24,6 +25,8 @@ class User extends Model implements User {
   iniciales!: string;
   cargo!: string;
   avatar?: string;
+  nota?: string;
+  observacion?: string;
 
   static get tableName(): string {
     return 'users';
@@ -48,6 +51,8 @@ class User extends Model implements User {
         iniciales: { type: 'string' },
         cargo: { type: 'string' },
         avatar: { type: 'string', nullable: true },
+        nota: { type: 'string', nullable: true },
+        observacion: { type: 'string', default: ''},
       },
     };
   }
@@ -55,14 +60,6 @@ class User extends Model implements User {
   // Relaciones
   static get relationMappings(): RelationMappings {
     return {
-      notas: {
-        relation: Model.HasManyRelation,
-        modelClass: Nota,
-        join: {
-          from: 'users.id',
-          to: 'notas.user_id',
-        },
-      },
       sessions: {
         relation: Model.HasManyRelation,
         modelClass: Session,
