@@ -2,9 +2,14 @@
 // Ej:
 // móvil: 1 Oct
 // no móvil: 1 de octubre a las 12:30 hrs.
-// Excel: 2024-10-01 12:30:01
+// Excel: 2024-10-01 12:30:01import { format } from 'date-fns';
+import { format } from 'date-fns';
+import { toZonedTime } from 'date-fns-tz';
+
+const timeZone = 'America/Santiago';
+
 export function formatDateTime(unixTimestamp: number, withHour: boolean = false) {
-  const date = new Date(unixTimestamp * 1000);
+  const date = toZonedTime(new Date(unixTimestamp * 1000), timeZone);
 
   const optionsMobile: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short' };
   let mobileFormat = date.toLocaleDateString('es-ES', optionsMobile);
@@ -17,19 +22,20 @@ export function formatDateTime(unixTimestamp: number, withHour: boolean = false)
       day: 'numeric', 
       month: 'long', 
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
+      hour12: false // Asegura el formato 24 horas
     };
     noMobileFormat = date.toLocaleDateString('es-ES', optionsNoMobileWithHour).replace(',', ' a las');
     noMobileFormat += ' hrs.';
 
-    excelFormat = date.toISOString().replace('T', ' ').split('.')[0];
+    excelFormat = format(date, 'yyyy-MM-dd HH:mm:ss'); // Formato consistente para Excel
   } else {
     const optionsNoMobile: Intl.DateTimeFormatOptions = { 
       day: 'numeric', 
       month: 'long', 
     };
-    noMobileFormat = date.toLocaleDateString('es-ES', optionsNoMobile)
-    excelFormat = date.toISOString().split('T')[0];
+    noMobileFormat = date.toLocaleDateString('es-ES', optionsNoMobile);
+    excelFormat = format(date, 'yyyy-MM-dd');
   }
   
   mobileFormat = capitalizeMonth(mobileFormat);
