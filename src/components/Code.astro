@@ -28,14 +28,14 @@
   inputs.forEach((input) => {
     // Agrega un listener para el evento 'focus'
     input.addEventListener("focus", (event) => {
-      console.log("Input focused:", event.target);
+      // console.log("Input focused:", event.target);
       // Aquí puedes ejecutar cualquier código que desees cuando el input reciba focus
       generateNoise(event.target, "input");
     });
 
     // Agrega un listener para el evento 'blur'
     input.addEventListener("blur", (event) => {
-      console.log("Input lost focus:", event.target);
+      // console.log("Input lost focus:", event.target);
       // Aquí puedes ejecutar cualquier código que desees cuando el input pierda focus
       removeNoise(event.target, "input");
     });
@@ -45,12 +45,12 @@
 
   buttons.forEach((button) => {
     button.addEventListener("mouseover", (event) => {
-      console.log("Button hovered:", event.target);
+      // console.log("Button hovered:", event.target);
       generateNoise(event.target, "button");
     });
 
     button.addEventListener("mouseout", (event) => {
-      console.log("Button unhovered:", event.target);
+      // console.log("Button unhovered:", event.target);
       removeNoise(event.target, "button");
     });
   });

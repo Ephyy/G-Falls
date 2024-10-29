@@ -21,11 +21,6 @@ const user = Astro.locals.user;
 if (!user) {
   return Astro.redirect("/login");
 }
-
-const result = Astro.getActionResult(actions.nota.cambiarNota);
-if (!result?.error) {
-  console.log("Nota cambiada con exito", result);
-}
 ---
 
 <div class="objeto">

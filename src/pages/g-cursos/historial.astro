@@ -9,8 +9,6 @@ const user = Astro.locals.user;
 if (!user) {
   return Astro.redirect("/login");
 }
-
-console.log(user);
 ---
 
 <GCursosLayout user={user} servicio="historial" title="Historial">

@@ -23,8 +23,6 @@ if (!tareaEncontrada || !categoriaEncontrada) {
   throw new Error(`Tarea con id ${id} no encontrada`);
 }
 
-console.log(tareaEncontrada);
-
 const user = Astro.locals.user;
 if (!user) {
   return Astro.redirect("/login");
