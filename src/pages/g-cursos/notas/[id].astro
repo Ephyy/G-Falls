@@ -30,13 +30,6 @@ if (!user) {
   return Astro.redirect("/login");
 }
 
-let formSuccessMessage: string[] = []; // Estado inicial
-
-const handleFormSuccess = (message: string[]) => {
-  formSuccessMessage = message;
-  console.log("handle success:", formSuccessMessage);
-};
-
 const result = Astro.getActionResult(actions.nota.cambiarNota);
 ---
 
