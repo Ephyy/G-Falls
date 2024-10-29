@@ -14,12 +14,6 @@ export const server = {
           return estudiantes;
         }
     }),
-    buscar: defineAction({
-        accept: "form",
-        handler: async (input) => {
-          console.log(input);
-        }
-    }),
     user,
     nota
 }
