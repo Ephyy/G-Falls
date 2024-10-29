@@ -23,7 +23,6 @@ export const nota = {
           .patch({ nota: notaValue })
           .where('id', context.locals.user.id);
           
-        console.log("result", result);
         if (nuevaNota === "111") {
           return {success: true, message: "! Felicitaciones ! Has encontrado tu frase secreta. Revisa el comentario de tu nota. "};
         }
