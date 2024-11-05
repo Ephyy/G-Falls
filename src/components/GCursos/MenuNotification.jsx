@@ -18,6 +18,9 @@ function MenuNotification() {
             </a>
             <ul className={`nuevos ${isActive ? 'active' : ''}`}>
                 <li>
+                    <a href="/g-cursos/foro">Foro (1)</a>
+                </li>
+                <li>
                     <a href="/g-cursos/tareas">Tareas (1)</a>
                 </li>
             </ul>
