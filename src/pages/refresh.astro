@@ -3,11 +3,11 @@ import LoginLayout from "../layouts/LoginLayout.astro";
 ---
 
 <LoginLayout>
-  <div class="pb-2">
+  <div class="pb-1">
     <h1 class="text-3xl">ACCESO DENEGADO</h1>
     <h2 class="text-xl">Has superado la cantidad de ingresos permitidos.</h2>
   </div>
-  <p class="text-lg">
+  <p class="pb-1 text-lg">
     Por favor, mira este <a
       href="https://youtu.be/dQw4w9WgXcQ"
       class="text-white underline">video</a
@@ -15,6 +15,28 @@ import LoginLayout from "../layouts/LoginLayout.astro";
     para poder continuar.
   </p>
   <a href="/login">
-    <button> Volver </button>
+    <button class="cut-btn btn"> Volver </button>
   </a>
 </LoginLayout>
+
+<style lang="scss">
+  $blue: #383cab;
+
+  .cut-btn {
+    clip-path: polygon(100% 0, 100% 75%, 90% 100%, 0 100%, 0 0);
+  }
+
+  .btn {
+    background: $blue;
+    border-color: lighten($blue, 10%);
+    color: #dedff4;
+    padding: 0 26px;
+    height: 42px;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background: darken($blue, 3%);
+    border-color: lighten($blue, 8%);
+  }
+</style>
