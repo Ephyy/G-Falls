@@ -5,6 +5,8 @@ function Buscador() {
       event.target.q.value === "weirdmageddon"
     ) {
       alert("¿Has probado colocarte un 7 en binario?");
+    } else {
+      alert("No se encontraron resultados para: " + event.target.q.value + ".\n Pero podría ser útil para otras cosas 👀");
     }
   }
 
