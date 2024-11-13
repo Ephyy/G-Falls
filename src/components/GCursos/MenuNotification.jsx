@@ -14,7 +14,7 @@ function MenuNotification() {
                 className="nuevo cursor-pointer"
                 onClick={handleClick}
             >
-                1
+                2
             </a>
             <ul className={`nuevos ${isActive ? 'active' : ''}`}>
                 <li>
